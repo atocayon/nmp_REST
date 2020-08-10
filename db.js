@@ -4,7 +4,8 @@ const db = () => {
     const db = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USERNAME,
-        password: ""
+        password: process.env.DB_PASSWORD,
+        database: process.env.DATABASE
     });
 
     db.connect((err) => {

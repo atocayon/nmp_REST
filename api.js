@@ -20,14 +20,33 @@ api.use(bodyParser.urlencoded({extended: false}));
 const tokenVerification = require("./Token/verification");
 
 //Import Routes for Document Tracking System
-const userRoute = require("./DocumentTracking/userRoute/user");
+const userRoute = require("./DocumentTracking/controller/user");
 
-db();
+
+//List of active Users
+const userList = require("./ListOfActiveUsers/users");
+
+//User Verification
+api.use("/", tokenVerification); // DTS
 
 //Routes Document Tracking System
-api.use("/dts", tokenVerification);
+api.use("/dts", userRoute);
+
 
 //Route Work Queue Information system
-api.use("/work-queue", tokenVerification);
+
+
+
+io.on("connection", (socket) => {
+
+    socket.on("active_users", () => {
+        userList(io);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("socket connection close...");
+        socket.disconnect();
+    });
+});
 
 api.listen(process.env.PORT);
