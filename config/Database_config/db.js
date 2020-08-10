@@ -12,7 +12,7 @@ const db = () => {
         if (err){
             console.log(err);
         }else{
-            console.log("MySQL Data fetched successfully...");
+            console.log("======= mysql query successful =======");
         }
     });
 

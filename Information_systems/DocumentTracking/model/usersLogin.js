@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const db = require("../../db");
-const listOfActiveUsers = require("../../ListOfActiveUsers/users");
+const db = require("../../../config/Database_config/db");
+const listOfActiveUsers = require("../../common/ListOfActiveUsers/users");
 
 const usersLogin = (usernameOrEmail, password, io, res) => {
   let sql = "";

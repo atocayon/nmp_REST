@@ -5,9 +5,9 @@ const api = express();
 const socketIO = require("socket.io");
 const http_server = http.createServer(api);
 const io = socketIO(http_server);
-const model = require("../model/index");
+const model = require("../model");
 router.get("/", (req, res) => {
-  res.send("Document Tracking System");
+  res.send("Document Tracking Information_systems");
 });
 
 //Users Login
