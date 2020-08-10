@@ -1,0 +1,31 @@
+{
+  "name": "nmp_rest",
+  "version": "1.0.0",
+  "description": "nmp_REST",
+  "main": "api.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.4",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "start": "nodemon api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atocayon/nmp_REST.git"
+  },
+  "author": "Aljon Tocayon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atocayon/nmp_REST/issues"
+  },
+  "homepage": "https://github.com/atocayon/nmp_REST#readme"
+}

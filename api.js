@@ -22,6 +22,7 @@ const tokenVerification = require("./Token/verification");
 //Import Routes for Document Tracking System
 const userRoute = require("./DocumentTracking/userRoute/user");
 
+db();
 
 //Routes Document Tracking System
 api.use("/dts", tokenVerification);
