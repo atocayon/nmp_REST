@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/Database_config/db");
+const db = require("../../../config/Database_config/db");
 
 router.post("/", (req, res) => {
   const { token } = req.body;

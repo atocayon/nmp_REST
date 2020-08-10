@@ -1,4 +1,4 @@
-const db = require("../config/Database_config/db");
+const db = require("../../../config/Database_config/db");
 
 const fetchUserActiveList = (io) => {
     let sql = "";
