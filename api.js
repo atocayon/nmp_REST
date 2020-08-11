@@ -18,8 +18,11 @@ const tokenVerification = require("./Information_systems/common/Token/verificati
 //Import Routes for Document Tracking Information_systems
 const dts = require("./Information_systems/DocumentTracking/controller");
 
-//List of active Users
+//Socket.io callbacks for Document Tracking System
 const userList = require("./Information_systems/common/ListOfActiveUsers/users");
+const document_trackingNumber = require("./Information_systems/DocumentTracking/model/document_trackingNumber");
+const total_pending_doc = require("./Information_systems/DocumentTracking/model/total_pending_documents");
+const document_logs = require("./Information_systems/DocumentTracking/model/document_logs");
 
 //User Verification
 api.use("/", tokenVerification); // DTS
@@ -34,6 +37,18 @@ api.use("/dts", dts);
 io.on("connection", (socket) => {
   socket.on("active_users", () => {
     userList(io);
+  });
+
+  socket.on("document_trackingNumber", () => {
+    document_trackingNumber(io);
+  });
+
+  socket.on("total_pending_doc", () => {
+    total_pending_doc(socket);
+  });
+
+  socket.on("document_logs", () => {
+    document_logs(io);
   });
 
   socket.on("disconnect", () => {

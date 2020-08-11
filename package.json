@@ -18,7 +18,7 @@
     "prettier": "^2.0.5"
   },
   "scripts": {
-    "start": "node api"
+    "start": "nodemon api"
   },
   "repository": {
     "type": "git",
