@@ -10,6 +10,7 @@ const doc_category = require("./document_category");
 const document_info = require("./document_info");
 const document_action_req = require("./document_action_req");
 const document_destination = require("./document_destination");
+const document_sched_released = require("./document_sched_released");
 
 const division_list = require("../../common/ManageDivisions/divisions_list");
 const division_info = require("../../common/ManageDivisions/division_info");
@@ -32,6 +33,7 @@ const dtsModel = {
   document_info: document_info,
   document_action_req:document_action_req,
   document_destination: document_destination,
+  document_sched_released: document_sched_released,
 
   division_list: division_list,
   division_info: division_info,

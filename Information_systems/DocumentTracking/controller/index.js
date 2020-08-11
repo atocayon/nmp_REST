@@ -99,11 +99,15 @@ router.get("/document/required/:doc_id", async (req, res) => {
   await model.document_action_req(req.params.doc_id, res);
 });
 
+//Document Date Time Released
+router.get("/document/sched/:doc_id", async (req, res) => {
+  await model.document_sched_released(req.params.doc_id, res);
+});
+
 //Document Destination
 router.get("/document/destination/:doc_id", async (req, res) => {
   await model.document_destination(req.params.doc_id, res);
 });
-
 
 // Manage NMP Divisions
 // Divisions list
