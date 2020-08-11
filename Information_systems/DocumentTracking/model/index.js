@@ -11,14 +11,15 @@ const document_info = require("./document_info");
 const document_action_req = require("./document_action_req");
 const document_destination = require("./document_destination");
 const document_sched_released = require("./document_sched_released");
+const document_action_taken = require("./document_action_taken");
+const document_barcode = require("./document_barcode");
+const document_barcodes = require("./document_barcodes");
 
 const division_list = require("../../common/ManageDivisions/divisions_list");
 const division_info = require("../../common/ManageDivisions/division_info");
 const new_division = require("../../common/ManageDivisions/new_division");
 const update_division = require("../../common/ManageDivisions/update_division");
 const delete_division = require("../../common/ManageDivisions/delete_division");
-
-
 
 const dtsModel = {
   usersList: usersList,
@@ -31,9 +32,12 @@ const dtsModel = {
   document_action: document_action,
   doc_category: doc_category,
   document_info: document_info,
-  document_action_req:document_action_req,
+  document_action_req: document_action_req,
   document_destination: document_destination,
   document_sched_released: document_sched_released,
+  document_action_taken: document_action_taken,
+  document_barcode: document_barcode,
+  document_barcodes: document_barcodes,
 
   division_list: division_list,
   division_info: division_info,
