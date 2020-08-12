@@ -147,6 +147,11 @@ router.get("/document/types", async (req, res) => {
   await model.document_types(res);
 });
 
+//Document Type info
+router.get("/document/type/:doc_type_id", async (req, res) => {
+  await model.document_type_info(req.params.doc_type_id, res);
+});
+
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {

@@ -17,6 +17,7 @@ const document_barcodes = require("./document_barcodes");
 const document_route_type = require("./document_route_type");
 const document_current_status = require("./document_current_status");
 const document_types = require("./document_types");
+const document_type_info = require("./document_type_info");
 
 const division_list = require("../../common/ManageDivisions/divisions_list");
 const division_info = require("../../common/ManageDivisions/division_info");
@@ -44,6 +45,7 @@ const dtsModel = {
   document_route_type: document_route_type,
   document_current_status: document_current_status,
   document_types: document_types,
+  document_type_info: document_type_info,
 
   division_list: division_list,
   division_info: division_info,
