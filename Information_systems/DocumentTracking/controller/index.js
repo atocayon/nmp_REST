@@ -132,6 +132,11 @@ router.get("/document/barcodes/:doc_id", async (req, res) => {
   await model.document_barcodes(req.params.doc_id, res);
 });
 
+//Document Route Type
+router.get("/document/route/:doc_id", async (req, res) => {
+  await model.document_route_type(req.params.doc_id, res);
+});
+
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {
