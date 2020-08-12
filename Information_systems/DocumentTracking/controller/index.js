@@ -137,8 +137,14 @@ router.get("/document/route/:doc_id", async (req, res) => {
   await model.document_route_type(req.params.doc_id, res);
 });
 
+//Document Current Status
 router.get("/document/status/:doc_id", async (req, res) => {
   await model.document_current_status(req.params.doc_id, res);
+});
+
+//Document Types
+router.get("/document/types", async (req, res) => {
+  await model.document_types(res);
 });
 
 // Manage NMP Divisions
