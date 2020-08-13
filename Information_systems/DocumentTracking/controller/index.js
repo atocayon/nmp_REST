@@ -246,6 +246,11 @@ router.post("/section/new", async (req, res) => {
   await model.new_section(division, section, secshort, res);
 });
 
+//Update sections
+router.post("/section/update", async (req, res) => {
+  const { sec_id, div_id, section, secshort } = req.body;
+  await model.update_section(sec_id, div_id, section, secshort, res);
+});
 //End Manage NMP Sections
 /* ======================================================== */
 
