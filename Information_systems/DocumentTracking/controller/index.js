@@ -227,4 +227,14 @@ router.post("/division/delete", async (req, res) => {
 });
 //End Manage NMP Divisions
 /* ======================================================== */
+
+/* ======================================================== */
+//Manage NMP Sections
+router.get("/sections", async (req, res) => {
+  await model.section_list(res);
+});
+
+//End Manage NMP Sections
+/* ======================================================== */
+
 module.exports = router;
