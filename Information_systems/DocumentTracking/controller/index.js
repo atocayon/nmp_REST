@@ -89,6 +89,7 @@ router.get("/category/:user_id", async (req, res) => {
   await model.doc_category(req.params.user_id, res);
 });
 
+/* ======================================================== */
 //Document Information
 router.get("/document/:doc_id", async (req, res) => {
   await model.document_info(req.params.doc_id, res);
@@ -141,7 +142,9 @@ router.get("/document/route/:doc_id", async (req, res) => {
 router.get("/document/status/:doc_id", async (req, res) => {
   await model.document_current_status(req.params.doc_id, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Document Types
 router.get("/document/types", async (req, res) => {
   await model.document_types(res);
@@ -167,11 +170,21 @@ router.post("/document/update/type", async (req, res) => {
 
 //Delete Document Type
 router.post("/document/delete/type", async (req, res) => {
-  const {doc_type_id} = req.body;
+  const { doc_type_id } = req.body;
 
   await model.delete_document_type(doc_type_id, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
+router.get("/document/pending", async (req, res) => {
+  const { user_id } = req.body;
+
+  await model.pending_documents(user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {
@@ -201,5 +214,5 @@ router.post("/division/delete", async (req, res) => {
   await model.delete_division(div_id, res);
 });
 //End Manage NMP Divisions
-
+/* ======================================================== */
 module.exports = router;

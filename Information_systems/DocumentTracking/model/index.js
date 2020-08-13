@@ -23,6 +23,8 @@ const new_document_type = require("./new_document_type");
 const update_document_type = require("./update_document_type");
 const delete_document_type = require("./delete_document_type");
 
+const pending_documents = require("./pending_documents");
+
 const division_list = require("../../common/ManageDivisions/divisions_list");
 const division_info = require("../../common/ManageDivisions/division_info");
 const new_division = require("../../common/ManageDivisions/new_division");
@@ -54,6 +56,9 @@ const dtsModel = {
   new_document_type: new_document_type,
   update_document_type: update_document_type,
   delete_document_type: delete_document_type,
+
+  pending_documents: pending_documents,
+
 
   division_list: division_list,
   division_info: division_info,
