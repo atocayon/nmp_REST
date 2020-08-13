@@ -3,6 +3,7 @@ const usersLogin = require("./usersLogin");
 const usersLogout = require("./usersLogout");
 const userRegistration = require("../../common/UserRegistration");
 const userInfo = require("../../common/Get_UserInfo");
+const section_users = require("../../common/ListOfSectionUsers");
 
 const document_trackingNumber = require("./document_trackingNumber");
 const document_action = require("./document_action");
@@ -46,6 +47,7 @@ const dtsModel = {
   usersLogout: usersLogout,
   userRegistration: userRegistration,
   userInfo: userInfo,
+  section_users: section_users,
 
   document_trackingNumber: document_trackingNumber,
   document_action: document_action,

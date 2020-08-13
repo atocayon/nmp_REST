@@ -6,29 +6,38 @@ const socketIO = require("socket.io");
 const http_server = http.createServer(api);
 const io = socketIO(http_server);
 const model = require("../model");
+/* ======================================================== */
 router.get("/", (req, res) => {
   res.send("Document Tracking Information System");
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Users List
 router.get("/users", async (req, res) => {
   await model.usersList(res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Users Login
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
   await model.usersLogin(usernameOrEmail, password, io, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Users Logout
 router.post("/logout", async (req, res) => {
   const { userId } = req.body;
 
   await model.usersLogout(userId, io, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //User Registration
 router.post("/registration", async (req, res) => {
   const {
@@ -56,12 +65,22 @@ router.post("/registration", async (req, res) => {
     res
   );
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Current System Users
 router.get("/user/:userId", async (req, res) => {
   await model.userInfo(req.params.userId, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
+router.get("/users/section/:sec_id", async (req, res) => {
+  await model.section_users(req.params.sec_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 //After Receiving Document
 router.post("/document/action", async (req, res) => {
   const {
@@ -83,11 +102,14 @@ router.post("/document/action", async (req, res) => {
     res
   );
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //Document Category
 router.get("/category/:user_id", async (req, res) => {
   await model.doc_category(req.params.user_id, res);
 });
+/* ======================================================== */
 
 /* ======================================================== */
 //Document Information
