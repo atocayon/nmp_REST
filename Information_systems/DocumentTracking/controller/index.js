@@ -185,8 +185,14 @@ router.get("/document/pendings", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
-router.get("/documents/logs/:user_id", async (req, res) => {
+router.get("/document/logs/:user_id", async (req, res) => {
   await model.user_document_logs(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+router.get("/document/section/:user_id", async (req, res) => {
+  await model.section_documents(req.params.user_id, res);
 });
 /* ======================================================== */
 

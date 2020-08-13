@@ -27,6 +27,8 @@ const pending_documents = require("./pending_documents");
 
 const user_document_logs = require("./user_document_logs");
 
+const section_documents = require("./section_documents");
+
 const division_list = require("../../common/ManageDivisions/divisions_list");
 const division_info = require("../../common/ManageDivisions/division_info");
 const new_division = require("../../common/ManageDivisions/new_division");
@@ -62,6 +64,8 @@ const dtsModel = {
   pending_documents: pending_documents,
 
   user_document_logs: user_document_logs,
+
+  section_documents: section_documents,
 
   division_list: division_list,
   division_info: division_info,
