@@ -158,10 +158,18 @@ router.post("/document/new/type", async (req, res) => {
   await model.new_document_type(doc_type, res);
 });
 
+//Update Document Type
 router.post("/document/update/type", async (req, res) => {
   const { doc_type_id, doc_type } = req.body;
 
   await model.update_document_type(doc_type_id, doc_type, res);
+});
+
+//Delete Document Type
+router.post("/document/delete/type", async (req, res) => {
+  const {doc_type_id} = req.body;
+
+  await model.delete_document_type(doc_type_id, res);
 });
 
 // Manage NMP Divisions
