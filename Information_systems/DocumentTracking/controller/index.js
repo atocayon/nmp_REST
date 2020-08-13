@@ -235,8 +235,15 @@ router.get("/sections", async (req, res) => {
   await model.section_list(res);
 });
 
+//Section info
 router.get("/section/:sec_id", async (req, res) => {
   await model.section_info(req.params.sec_id, res);
+});
+
+//Add new section
+router.post("/section/new", async (req, res) => {
+  const { division, section, secshort } = req.body;
+  await model.new_section(division, section, secshort, res);
 });
 
 //End Manage NMP Sections

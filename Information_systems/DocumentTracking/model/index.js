@@ -37,7 +37,7 @@ const delete_division = require("../../common/ManageDivisions/delete_division");
 
 const section_list = require("../../common/ManageSections/section_list");
 const section_info = require("../../common/ManageSections/section_info");
-
+const new_section = require("../../common/ManageSections/new_section");
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -77,7 +77,8 @@ const dtsModel = {
   delete_division: delete_division,
 
   section_list: section_list,
-  section_info: section_info
+  section_info: section_info,
+  new_section: new_section
 };
 
 module.exports = dtsModel;
