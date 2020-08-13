@@ -156,20 +156,20 @@ router.get("/document/type/:doc_type_id", async (req, res) => {
 });
 
 // New Document Type
-router.post("/document/new/type", async (req, res) => {
+router.post("/document/type/new", async (req, res) => {
   const { doc_type } = req.body;
   await model.new_document_type(doc_type, res);
 });
 
 //Update Document Type
-router.post("/document/update/type", async (req, res) => {
+router.post("/document/type/update", async (req, res) => {
   const { doc_type_id, doc_type } = req.body;
 
   await model.update_document_type(doc_type_id, doc_type, res);
 });
 
 //Delete Document Type
-router.post("/document/delete/type", async (req, res) => {
+router.post("/document/type/delete", async (req, res) => {
   const { doc_type_id } = req.body;
 
   await model.delete_document_type(doc_type_id, res);
@@ -177,10 +177,16 @@ router.post("/document/delete/type", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
-router.get("/document/pending", async (req, res) => {
+router.get("/document/pendings", async (req, res) => {
   const { user_id } = req.body;
 
   await model.pending_documents(user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+router.get("/documents/logs/:user_id", async (req, res) => {
+  await model.user_document_logs(req.params.user_id, res);
 });
 /* ======================================================== */
 
