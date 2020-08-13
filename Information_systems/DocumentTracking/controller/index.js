@@ -230,8 +230,13 @@ router.post("/division/delete", async (req, res) => {
 
 /* ======================================================== */
 //Manage NMP Sections
+//Section List
 router.get("/sections", async (req, res) => {
   await model.section_list(res);
+});
+
+router.get("/section/:sec_id", async (req, res) => {
+  await model.section_info(req.params.sec_id, res);
 });
 
 //End Manage NMP Sections
