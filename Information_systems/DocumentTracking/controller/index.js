@@ -158,6 +158,12 @@ router.post("/document/new/type", async (req, res) => {
   await model.new_document_type(doc_type, res);
 });
 
+router.post("/document/update/type", async (req, res) => {
+  const { doc_type_id, doc_type } = req.body;
+
+  await model.update_document_type(doc_type_id, doc_type, res);
+});
+
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {
