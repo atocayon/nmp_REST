@@ -41,6 +41,8 @@ const section_info = require("../../common/ManageSections/section_info");
 const new_section = require("../../common/ManageSections/new_section");
 const update_section = require("../../common/ManageSections/update_section");
 const delete_section = require("../../common/ManageSections/delete_section");
+
+const sub_document = require("./sub_document");
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -61,6 +63,8 @@ const dtsModel = {
   document_barcodes: document_barcodes,
   document_route_type: document_route_type,
   document_current_status: document_current_status,
+
+  sub_document: sub_document,
 
   document_types: document_types,
   document_type_info: document_type_info,
@@ -85,6 +89,8 @@ const dtsModel = {
   new_section: new_section,
   update_section: update_section,
   delete_section: delete_section,
+
+
 };
 
 module.exports = dtsModel;
