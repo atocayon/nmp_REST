@@ -218,13 +218,17 @@ router.get("/document/section/:user_id", async (req, res) => {
 });
 /* ======================================================== */
 
-
 /* ======================================================== */
+//Sub Document
 router.get("/document/sub/:doc_id", async (req, res) => {
   await model.sub_document(req.params.doc_id, res);
 });
-/* ======================================================== */
 
+//Sub Process
+router.get("/document/process/:doc_id", async (req, res) => {
+  await model.sub_process(res.params.doc_id, res);
+});
+/* ======================================================== */
 
 /* ======================================================== */
 // Manage NMP Divisions
