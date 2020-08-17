@@ -45,7 +45,7 @@ const new_section = require("../../common/ManageSections/new_section");
 const update_section = require("../../common/ManageSections/update_section");
 const delete_section = require("../../common/ManageSections/delete_section");
 
-const insert_document_logs = require("./insert_document_logs");
+const document_dissemination = require("./document_dissemination");
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -94,7 +94,7 @@ const dtsModel = {
   update_section: update_section,
   delete_section: delete_section,
 
-  insert_document_logs: insert_document_logs,
+  document_dissemination: document_dissemination,
 };
 
 module.exports = dtsModel;

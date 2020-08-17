@@ -1,6 +1,6 @@
 const db = require("../../../config/Database_config/db");
 const dateTime = require("../../common/Get_CurrentDateTime");
-const insert_document_logs = (
+const document_dissemination = (
   user_id,
   doc_id,
   doc_info,
@@ -29,4 +29,4 @@ const insert_document_logs = (
   });
 };
 
-module.exports = insert_document_logs;
+module.exports = document_dissemination;

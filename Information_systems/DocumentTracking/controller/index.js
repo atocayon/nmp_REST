@@ -295,10 +295,10 @@ router.post("/sections/delete", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
-//Insert Document Logs
-router.post("/document/logs", async (req, res) => {
+//Document Dissemination
+router.post("/document/dissemination", async (req, res) => {
   const { user_id, doc_id, doc_info, remarks, destination } = req.body;
-  await model.insert_document_logs(
+  await model.document_dissemination(
     user_id,
     doc_id,
     doc_info,
