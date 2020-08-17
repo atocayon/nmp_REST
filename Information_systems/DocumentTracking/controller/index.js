@@ -294,4 +294,19 @@ router.post("/sections/delete", async (req, res) => {
 //End Manage NMP Sections
 /* ======================================================== */
 
+/* ======================================================== */
+//Insert Document Logs
+router.post("/document/logs", async (req, res) => {
+  const { user_id, doc_id, doc_info, remarks, destination } = req.body;
+  await model.insert_document_logs(
+    user_id,
+    doc_id,
+    doc_info,
+    remarks,
+    destination,
+    res
+  );
+});
+/* ======================================================== */
+
 module.exports = router;
