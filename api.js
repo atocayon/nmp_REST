@@ -23,7 +23,7 @@ const userList = require("./Information_systems/common/ListOfActiveUsers/users")
 const document_trackingNumber = require("./Information_systems/DocumentTracking/model/document_trackingNumber");
 const total_pending_doc = require("./Information_systems/DocumentTracking/model/total_pending_documents");
 const document_logs = require("./Information_systems/DocumentTracking/model/document_logs");
-
+const receive_document = require("./Information_systems/DocumentTracking/model/receive_document");
 //User Verification
 api.use("/", tokenVerification); // DTS
 
@@ -50,6 +50,13 @@ io.on("connection", (socket) => {
   socket.on("document_logs", () => {
     document_logs(io);
   });
+
+  socket.on(
+    "receive_document",
+    (documentTracking, user_id, user_section, callback) => {
+      receive_document(socket);
+    }
+  );
 
   socket.on("disconnect", () => {
     console.log("socket connection close...");
