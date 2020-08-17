@@ -231,6 +231,50 @@ router.get("/document/process/:doc_id", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+//Document Dissemination
+router.post("/document/dissemination", async (req, res) => {
+  const { user_id, doc_id, doc_info, remarks, destination } = req.body;
+  await model.document_dissemination(
+    user_id,
+    doc_id,
+    doc_info,
+    remarks,
+    destination,
+    res
+  );
+});
+/* ======================================================== */
+
+/* ======================================================== */
+//New Document
+router.post("/document/new", async (req, res) => {
+  const {
+    document_id,
+    creator,
+    subject,
+    doc_type,
+    note,
+    action_req,
+    document_logs,
+    category,
+  } = req.body;
+
+  await model.new_document(
+    document_id,
+    creator,
+    subject,
+    doc_type,
+    note,
+    action_req,
+    document_logs,
+    category,
+    io,
+    res
+  );
+});
+/* ======================================================== */
+
+/* ======================================================== */
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {
@@ -292,21 +336,6 @@ router.post("/sections/delete", async (req, res) => {
   await model.delete_section(sec_id, res);
 });
 //End Manage NMP Sections
-/* ======================================================== */
-
-/* ======================================================== */
-//Document Dissemination
-router.post("/document/dissemination", async (req, res) => {
-  const { user_id, doc_id, doc_info, remarks, destination } = req.body;
-  await model.document_dissemination(
-    user_id,
-    doc_id,
-    doc_info,
-    remarks,
-    destination,
-    res
-  );
-});
 /* ======================================================== */
 
 module.exports = router;
