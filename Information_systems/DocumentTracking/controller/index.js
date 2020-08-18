@@ -65,6 +65,19 @@ router.post("/registration", async (req, res) => {
     res
   );
 });
+
+//Update User
+router.post("/user/update", async (req, res) => {
+  const { data } = req.body;
+
+  await model.update_user(data, res);
+});
+
+//Update user role
+router.post("/user/update/role", async (req, res) => {
+  const { role, user_id, sec_id } = req.body;
+  await model.update_user_role(role, user_id, sec_id, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */
@@ -75,6 +88,7 @@ router.get("/user/:userId", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+//Section Users
 router.get("/users/section/:sec_id", async (req, res) => {
   await model.section_users(req.params.sec_id, res);
 });

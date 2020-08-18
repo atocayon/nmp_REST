@@ -5,6 +5,9 @@ const userRegistration = require("../../common/UserRegistration");
 const userInfo = require("../../common/Get_UserInfo");
 const section_users = require("../../common/ListOfSectionUsers");
 
+const update_user = require("../../common/User_Management/update_user");
+const update_user_role = require("../../common/User_Management/update_user_role");
+
 const document_trackingNumber = require("./document_trackingNumber");
 const document_action = require("./document_action");
 const doc_category = require("./document_category");
@@ -47,11 +50,12 @@ const new_section = require("../../common/ManageSections/new_section");
 const update_section = require("../../common/ManageSections/update_section");
 const delete_section = require("../../common/ManageSections/delete_section");
 
-const new_document = require("./new_document")
+const new_document = require("./new_document");
 const document_dissemination = require("./document_dissemination");
 
 const document_subject_search = require("./document_subject_search");
 const email_sending = require("./email_sending");
+
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -59,6 +63,9 @@ const dtsModel = {
   userRegistration: userRegistration,
   userInfo: userInfo,
   section_users: section_users,
+
+  update_user: update_user,
+  update_user_role: update_user_role,
 
   document_trackingNumber: document_trackingNumber,
   document_action: document_action,
@@ -107,8 +114,7 @@ const dtsModel = {
   update_section: update_section,
   delete_section: delete_section,
 
-  email_sending: email_sending
-
+  email_sending: email_sending,
 };
 
 module.exports = dtsModel;
