@@ -282,6 +282,13 @@ router.get("/document/search/:subject", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+//Document Tracking
+router.get("/document/tracking/:doc_id", async (req, res) => {
+  await model.document_tracking(req.params.doc_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {

@@ -18,6 +18,8 @@ const document_barcodes = require("./document_barcodes");
 const document_route_type = require("./document_route_type");
 const document_current_status = require("./document_current_status");
 
+const document_tracking = require("./document_tracking");
+
 const sub_document = require("./sub_document");
 const sub_process = require("./sub_process");
 
@@ -75,6 +77,8 @@ const dtsModel = {
   new_document: new_document,
 
   document_subject_search: document_subject_search,
+
+  document_tracking: document_tracking,
 
   sub_document: sub_document,
   sub_process: sub_process,
