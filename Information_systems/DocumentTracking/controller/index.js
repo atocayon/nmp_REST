@@ -78,6 +78,12 @@ router.post("/user/update/role", async (req, res) => {
   const { role, user_id, sec_id } = req.body;
   await model.update_user_role(role, user_id, sec_id, res);
 });
+
+//Update user status
+router.post("/user/update/status", async (req, res) => {
+  const { status, user_id, sec_id } = req.body;
+  await model.update_user_status(status, user_id, sec_id, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */
