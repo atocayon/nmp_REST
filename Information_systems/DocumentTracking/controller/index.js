@@ -84,6 +84,12 @@ router.post("/user/update/status", async (req, res) => {
   const { status, user_id, sec_id } = req.body;
   await model.update_user_status(status, user_id, sec_id, res);
 });
+
+//User transfer office
+router.post("/user/transfer/office", async (req, res) => {
+  const { sec_id, user_id } = req.body;
+  await model.user_transfer_office(sec_id, user_id, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */
