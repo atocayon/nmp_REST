@@ -90,6 +90,12 @@ router.post("/user/transfer/office", async (req, res) => {
   const { sec_id, user_id } = req.body;
   await model.user_transfer_office(sec_id, user_id, res);
 });
+
+//User account deletion
+router.post("/user/delete", async (req, res) => {
+  const { user_id } = req.body;
+  await model.deleted_user_accnt(user_id, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */

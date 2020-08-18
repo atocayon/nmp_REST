@@ -9,6 +9,7 @@ const update_user = require("../../common/User_Management/update_user");
 const update_user_role = require("../../common/User_Management/update_user_role");
 const update_user_status = require("../../common/User_Management/update_user_status");
 const user_transfer_office = require("../../common/User_Management/user_transfer_office");
+const deleted_user_accnt = require("../../common/User_Management/delete_user_accnt");
 
 const document_trackingNumber = require("./document_trackingNumber");
 const document_action = require("./document_action");
@@ -70,6 +71,7 @@ const dtsModel = {
   update_user_role: update_user_role,
   update_user_status: update_user_status,
   user_transfer_office: user_transfer_office,
+  deleted_user_accnt: deleted_user_accnt,
 
   document_trackingNumber: document_trackingNumber,
   document_action: document_action,
