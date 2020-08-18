@@ -275,6 +275,13 @@ router.post("/document/new", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+//Document Search
+router.get("/document/search/:subject", async (req, res) => {
+  await model.document_subject_search(req.params.subject, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 // Manage NMP Divisions
 // Divisions list
 router.get("/divisions", async (req, res) => {

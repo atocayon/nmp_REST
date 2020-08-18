@@ -47,6 +47,8 @@ const delete_section = require("../../common/ManageSections/delete_section");
 
 const new_document = require("./new_document")
 const document_dissemination = require("./document_dissemination");
+
+const document_subject_search = require("./document_subject_search");
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -70,6 +72,8 @@ const dtsModel = {
 
   document_dissemination: document_dissemination,
   new_document: new_document,
+
+  document_subject_search: document_subject_search,
 
   sub_document: sub_document,
   sub_process: sub_process,
