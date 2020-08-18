@@ -345,4 +345,12 @@ router.post("/sections/delete", async (req, res) => {
 //End Manage NMP Sections
 /* ======================================================== */
 
+/* ======================================================== */
+//Email Sending
+router.post("/send/email", async (req, res) => {
+  const { user_id, subject, destination } = req.body;
+  await model.email_sending(user_id, subject, destination, res);
+});
+/* ======================================================== */
+
 module.exports = router;

@@ -49,6 +49,7 @@ const new_document = require("./new_document")
 const document_dissemination = require("./document_dissemination");
 
 const document_subject_search = require("./document_subject_search");
+const email_sending = require("./email_sending");
 const dtsModel = {
   usersList: usersList,
   usersLogin: usersLogin,
@@ -102,6 +103,7 @@ const dtsModel = {
   update_section: update_section,
   delete_section: delete_section,
 
+  email_sending: email_sending
 
 };
 
