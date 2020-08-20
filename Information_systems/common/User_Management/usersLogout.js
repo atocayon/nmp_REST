@@ -1,5 +1,5 @@
 const db = require("../../../config/Database_config/db");
-const listOfActiveUsers = require("../../common/ListOfActiveUsers/users");
+const listOfActiveUsers = require("../ListOfActiveUsers/users");
 
 const usersLogout = (userId, io, res) => {
     const sql = "UPDATE users_session SET isDeleted = ? WHERE userId = ?";
