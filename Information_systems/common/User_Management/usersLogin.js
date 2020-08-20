@@ -8,10 +8,11 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
   sql += "a.user_id AS user_id, ";
   sql += "a.name AS name, ";
   sql += "a.password AS password, ";
-  sql += "b.role AS role ";
+  sql += "b.dts_role, ";
+  sql += "b.work_queue_role ";
   sql += "FROM users a ";
   sql += "JOIN users_role b ";
-  sql += "ON a.role = b.role_id ";
+  sql += "ON a.user_id = b.user_id ";
   sql += "WHERE email = ? OR username = ?";
 
   db().query(sql, [usernameOrEmail, usernameOrEmail], function (
@@ -40,9 +41,9 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
         }
 
         const id = rows[0].user_id;
-        const role = rows[0].role;
+        const role = {dts: rows[0].dts_role, work_queue: rows[0].work_queue_role};
         const name = rows[0].name;
-        const data = { id, name };
+        const data = { id, name, role };
         const check_session_query =
           "SELECT * FROM users_session WHERE userId = ?";
         db().query(check_session_query, [id], function (err, rows, fields) {
@@ -61,7 +62,7 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
                 return res.status(500).send(err);
               }
               listOfActiveUsers(io);
-              console.log(data);
+
               return res.status(200).send(data);
             });
           }
@@ -76,7 +77,6 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
               }
               if (result) {
                 listOfActiveUsers(io);
-                console.log(data);
                 return res.status(200).send(data);
               }
             });

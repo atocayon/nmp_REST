@@ -18,6 +18,9 @@ const tokenVerification = require("./Information_systems/common/Token/verificati
 //Import Routes for Document Tracking Information_systems
 const dts = require("./Information_systems/DocumentTracking/controller");
 
+//Import Routes for Work Queue Information System
+const work_queue = require("./Information_systems/WorkQueue/controller");
+
 //Socket.io callbacks for Document Tracking System
 const userList = require("./Information_systems/common/ListOfActiveUsers/users");
 const document_trackingNumber = require("./Information_systems/DocumentTracking/model/document_trackingNumber");
@@ -31,7 +34,7 @@ api.use("/", tokenVerification); // DTS
 api.use("/dts", dts);
 
 //Route Work Queue Information Information_systems
-// api.use("/work-queue");
+api.use("/work-queue", work_queue);
 
 //Socket.io connections
 io.on("connection", (socket) => {

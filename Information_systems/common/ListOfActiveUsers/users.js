@@ -18,7 +18,6 @@ const fetchUserActiveList = (io) => {
             console.log(err);
         }
 
-        console.log(rows);
         io.emit("activeUsers", rows);
     });
 };
