@@ -6,9 +6,10 @@ const socketIO = require("socket.io");
 const http_server = http.createServer(api);
 const io = socketIO(http_server);
 
+const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv/config");
-
+api.use(cors());
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
 

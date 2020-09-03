@@ -10,8 +10,8 @@ const user_info = (user_id, res) => {
     sql += "a.email AS email, ";
     sql += "a.section AS secid, ";
     sql += "a.position AS position, ";
-    sql += "d.role AS role, ";
-    sql += "d.role_id AS role_id, ";
+    sql += "d.dts_role AS dts_role, ";
+    sql += "d.work_queue_role AS work_queue_role, ";
     sql += "a.status AS status, ";
     sql += "b.section AS section, ";
     sql += "b.secshort AS secshort, ";
@@ -23,7 +23,7 @@ const user_info = (user_id, res) => {
     sql += "JOIN divisions c ";
     sql += "ON b.divid = c.depid ";
     sql += "JOIN users_role d ";
-    sql += "ON a.role = d.role_id ";
+    sql += "ON a.user_id = d.user_id ";
     sql += "WHERE a.user_id = ? ";
     db().query(sql, [parseInt(user_id)], function (err, rows, fields) {
         if (err) {

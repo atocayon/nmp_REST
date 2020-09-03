@@ -14,6 +14,12 @@ router.get("/", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+
+// Get user info
+router.get("/user/:user_id", async (req, res) => {
+  await model.userInfo(req.params.user_id, res);
+});
+
 //User Login
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
@@ -24,6 +30,31 @@ router.post("/login", async (req, res) => {
 router.post("/logout", async (req, res) => {
   const { user_id } = req.body;
   await model.user_logout(user_id, io, res);
+});
+
+// Section List
+router.get("/sections", async (req, res) => {
+  await model.sectionList(res);
+});
+
+// Add New Job Request
+router.post("/job-request", async (req, res) => {
+  const {
+    requisitioner_id,
+    task_secid,
+    dateNeeded,
+    typeOfWork,
+    scopeOfWork,
+  } = req.body;
+
+  await model.new_job_request(
+    requisitioner_id,
+    task_secid,
+    dateNeeded,
+    typeOfWork,
+    scopeOfWork,
+    res
+  );
 });
 /* ======================================================== */
 

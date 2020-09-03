@@ -26,7 +26,7 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
     }
 
     if (rows.length === 0) {
-      return res.status(200).send("unrecognized email");
+      return res.status(200).send({message: "unrecognized"});
     }
 
     if (rows.length > 0) {
@@ -37,13 +37,13 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
         }
 
         if (!result) {
-          return res.status(200).send("incorrect password");
+          return res.status(200).send({message: "incorrect"});
         }
 
         const id = rows[0].user_id;
         const role = {dts: rows[0].dts_role, work_queue: rows[0].work_queue_role};
         const name = rows[0].name;
-        const data = { id, name, role };
+        const data = { id, name, role, message: "success" };
         const check_session_query =
           "SELECT * FROM users_session WHERE userId = ?";
         db().query(check_session_query, [id], function (err, rows, fields) {
