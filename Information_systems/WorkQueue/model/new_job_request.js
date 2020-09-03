@@ -33,10 +33,9 @@ const new_job_request = (
           task_secid,
           dateNeeded,
           scopeOfWork,
+          typeOfWork,
           res
         );
-
-        insert_work_queue_type_of_work(new_task_id, typeOfWork, res);
 
         return res.status(200).send("success");
       } else {
@@ -48,12 +47,10 @@ const new_job_request = (
           task_secid,
           dateNeeded,
           scopeOfWork,
+          typeOfWork,
           res
         );
 
-        insert_work_queue_type_of_work(increment_task_id, typeOfWork, res);
-
-        return res.status(200).send("success");
       }
     } else {
       const new_task_id = current_year + "000";
@@ -63,12 +60,9 @@ const new_job_request = (
         task_secid,
         dateNeeded,
         scopeOfWork,
+        typeOfWork,
         res
       );
-
-      insert_work_queue_type_of_work(new_task_id, typeOfWork, res);
-
-      return res.status(200).send("success");
     }
   });
 };
@@ -79,6 +73,7 @@ const insert_work_queue_task = (
   task_secid,
   dateNeeded,
   scopeOfWork,
+  typeOfWork,
   res
 ) => {
   let insert_task_queury = "";
@@ -100,7 +95,7 @@ const insert_work_queue_task = (
       return res.status(500).send(err);
     }
 
-    return "success";
+      insert_work_queue_type_of_work(task_id, typeOfWork, res);
   });
 };
 
@@ -117,7 +112,10 @@ const insert_work_queue_type_of_work = (task_id, typeOfWork, res) => {
   db().query(insert_type_of_work_query, [arr], (err, rows, fields) => {
     if (err) {
       console.log(err);
+      return res.status(500).send(err);
     }
+
+    return res.status(200).send("success");
   });
 };
 
