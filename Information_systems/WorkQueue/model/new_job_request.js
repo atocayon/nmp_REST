@@ -5,6 +5,7 @@ const new_job_request = (
   task_secid,
   dateNeeded,
   typeOfWork,
+  otherTypeOfWork,
   scopeOfWork,
   res
 ) => {
@@ -33,6 +34,7 @@ const new_job_request = (
           task_secid,
           dateNeeded,
           scopeOfWork,
+          otherTypeOfWork,
           typeOfWork,
           res
         );
@@ -47,10 +49,10 @@ const new_job_request = (
           task_secid,
           dateNeeded,
           scopeOfWork,
+          otherTypeOfWork,
           typeOfWork,
           res
         );
-
       }
     } else {
       const new_task_id = current_year + "000";
@@ -60,6 +62,7 @@ const new_job_request = (
         task_secid,
         dateNeeded,
         scopeOfWork,
+        otherTypeOfWork,
         typeOfWork,
         res
       );
@@ -73,6 +76,7 @@ const insert_work_queue_task = (
   task_secid,
   dateNeeded,
   scopeOfWork,
+  otherTypeOfWork,
   typeOfWork,
   res
 ) => {
@@ -95,28 +99,48 @@ const insert_work_queue_task = (
       return res.status(500).send(err);
     }
 
-      insert_work_queue_type_of_work(task_id, typeOfWork, res);
+    insert_work_queue_type_of_work(task_id, typeOfWork, otherTypeOfWork, res);
   });
 };
 
-const insert_work_queue_type_of_work = (task_id, typeOfWork, res) => {
-  let arr = [];
-  for (let i = 0; i < typeOfWork.length; i++) {
-    arr.push([task_id, typeOfWork[i]]);
-  }
-
-  let insert_type_of_work_query = "";
-  insert_type_of_work_query += "INSERT INTO work_queue_type_of_work ";
-  insert_type_of_work_query += "(task_id, task) VALUES ?";
-
-  db().query(insert_type_of_work_query, [arr], (err, rows, fields) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).send(err);
+const insert_work_queue_type_of_work = (
+  task_id,
+  typeOfWork,
+  otherTypeOfWork,
+  res
+) => {
+  if (otherTypeOfWork === "") {
+    let arr = [];
+    for (let i = 0; i < typeOfWork.length; i++) {
+      arr.push([task_id, typeOfWork[i]]);
     }
 
-    return res.status(200).send("success");
-  });
+    let insert_type_of_work_query = "";
+    insert_type_of_work_query += "INSERT INTO work_queue_type_of_work ";
+    insert_type_of_work_query += "(task_id, task) VALUES ?";
+
+    db().query(insert_type_of_work_query, [arr], (err, rows, fields) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
+
+      return res.status(200).send("success");
+    });
+  } else {
+    let insert_type_of_work_query = "";
+    insert_type_of_work_query += "INSERT INTO work_queue_type_of_work ";
+    insert_type_of_work_query += "(task_id, task) VALUES ?";
+    const value = [[task_id, otherTypeOfWork]];
+    db().query(insert_type_of_work_query, [value], (err, rows, fields) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
+
+      return res.status(200).send("success");
+    });
+  }
 };
 
 module.exports = new_job_request;

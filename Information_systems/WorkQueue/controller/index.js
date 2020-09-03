@@ -44,6 +44,7 @@ router.post("/job-request", async (req, res) => {
     task_secid,
     dateNeeded,
     typeOfWork,
+    otherTypeOfWork,
     scopeOfWork,
   } = req.body;
 
@@ -52,6 +53,7 @@ router.post("/job-request", async (req, res) => {
     task_secid,
     dateNeeded,
     typeOfWork,
+    otherTypeOfWork,
     scopeOfWork,
     res
   );
