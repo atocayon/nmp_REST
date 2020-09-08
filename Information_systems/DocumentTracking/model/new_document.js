@@ -57,6 +57,7 @@ const new_document = (
         db().query(sql1, [values], function (err, result) {
           if (err) {
             console.log(err);
+            return res.status(500).send(err);
           }
 
           const sql2 =
@@ -92,6 +93,7 @@ const new_document = (
         db().query(sql4, [values4], function (err, result) {
           if (err) {
             console.log(err);
+            return res.status(500).send(err);
           }
 
           const sql5 =
@@ -100,6 +102,7 @@ const new_document = (
           db().query(sql5, [action_req], function (err, result) {
             if (err) {
               console.log(err);
+              return res.status(500).send(err);
             }
 
             const sql5 =
@@ -119,6 +122,7 @@ const new_document = (
             db().query(sql5, [values5], function (err, result) {
               if (err) {
                 console.log(err);
+                return res.status(500).send(err);
               }
 
               update_document_logs(io);

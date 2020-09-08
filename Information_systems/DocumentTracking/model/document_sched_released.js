@@ -12,7 +12,7 @@ const document_sched_released = (receiver_id, doc_id, res) => {
       return res.status(500).send(err);
     }
 
-    return res.status(200).send(rows[0]);
+    return res.status(200).send(rows[0].date_time_released);
   });
 };
 

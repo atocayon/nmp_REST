@@ -12,7 +12,7 @@ const document_action_taken = (receiver_id, doc_id, res) => {
       console.log(err);
       return res.status(500).send(err);
     }
-    return res.status(200).send(rows[0]);
+    return res.status(200).send(rows[0].remarks);
   });
 };
 

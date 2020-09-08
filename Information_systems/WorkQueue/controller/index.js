@@ -20,25 +20,28 @@ router.get("/user/:user_id", async (req, res) => {
   await model.userInfo(req.params.user_id, res);
 });
 
+/* ======================================================== */
+
+/* ======================================================== */
 //User Login
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
   await model.user_login(usernameOrEmail, password, io, res);
 });
+/* ======================================================== */
 
+/* ======================================================== */
 //User Logout
 router.post("/logout", async (req, res) => {
   const { user_id } = req.body;
   await model.user_logout(user_id, io, res);
 });
 
-// Section List
-router.get("/sections", async (req, res) => {
-  await model.sectionList(res);
-});
+/* ======================================================== */
 
+/* ======================================================== */
 // Add New Job Request
-router.post("/job-request", async (req, res) => {
+router.post("/new/job-request", async (req, res) => {
   const {
     requisitioner_id,
     task_secid,
@@ -57,6 +60,19 @@ router.post("/job-request", async (req, res) => {
     scopeOfWork,
     res
   );
+});
+/* ======================================================== */
+
+/* ======================================================== */
+router.get("/client/job-requests/:user_id", async (req, res) => {
+  await model.client_job_request(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+// Section List
+router.get("/sections", async (req, res) => {
+  await model.sectionList(res);
 });
 /* ======================================================== */
 

@@ -24,6 +24,8 @@ const document_barcodes = require("./document_barcodes");
 const document_route_type = require("./document_route_type");
 const document_current_status = require("./document_current_status");
 
+const document_logs_expand = require("./document_logs_expand");
+
 const document_tracking = require("./document_tracking");
 
 const sub_document = require("./sub_document");
@@ -58,6 +60,7 @@ const document_dissemination = require("./document_dissemination");
 
 const document_subject_search = require("./document_subject_search");
 const email_sending = require("./email_sending");
+const { request } = require("express");
 
 const dtsModel = {
   usersList: usersList,
@@ -86,6 +89,7 @@ const dtsModel = {
   document_route_type: document_route_type,
   document_current_status: document_current_status,
 
+  document_logs_expand: document_logs_expand,
   document_dissemination: document_dissemination,
   new_document: new_document,
 

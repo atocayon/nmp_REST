@@ -199,6 +199,13 @@ router.get("/document/status/:doc_id", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Expand Doc Logs
+router.get("/document/expand/:doc_id/:status", async (req, res) => {
+  await model.document_logs_expand(req.params.doc_id, req.params.status, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 //Document Types
 router.get("/document/types", async (req, res) => {
   await model.document_types(res);
@@ -231,22 +238,23 @@ router.post("/document/type/delete", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
-router.get("/document/pendings", async (req, res) => {
-  const { user_id } = req.body;
-
-  await model.pending_documents(user_id, res);
+// user Pending document
+router.get("/document/pendings/:user_id", async (req, res) => {
+  await model.pending_documents(req.params.user_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
+// User document logs
 router.get("/document/logs/:user_id", async (req, res) => {
   await model.user_document_logs(req.params.user_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
-router.get("/document/section/:user_id", async (req, res) => {
-  await model.section_documents(req.params.user_id, res);
+// Section Documents
+router.get("/document/section/:folder/:user_id", async (req, res) => {
+  await model.section_documents(req.params.user_id, req.params.folder, res);
 });
 /* ======================================================== */
 
@@ -334,8 +342,8 @@ router.get("/division/:divId", async (req, res) => {
 
 //New Division
 router.post("/division/new", async (req, res) => {
-  const { department, depshort, payrollshort } = req.body;
-  await model.new_division(department, depshort, payrollshort, res);
+  const { department, depshort, payroll } = req.body;
+  await model.new_division(department, depshort, payroll, res);
 });
 
 //Update Division
