@@ -21,7 +21,7 @@ const document_info = (doc_id, res) => {
   sql += "ON a.creator = c.user_id ";
   sql += "JOIN sections d ";
   sql += "ON c.section = d.secid ";
-  sql += "WHERE a.documentID = ? ORDER BY a.id ASC LIMIT 1";
+  sql += "WHERE a.documentID = ? ORDER BY a.documentID ASC LIMIT 1";
   db().query(sql, [doc_id], function (err, rows, fields) {
     if (err) {
       console.log(err);

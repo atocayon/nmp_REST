@@ -1,10 +1,11 @@
-const http = require("http");
 
 const express = require("express");
+const http = require("http");
 const api = express();
-const socketIO = require("socket.io");
 const http_server = http.createServer(api);
-const io = socketIO(http_server);
+const io = require("socket.io")(http_server, { origins: '*:*'});
+// const io = socketIO(http_server);
+const PORT = process.env.PORT || 4000;
 
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -47,8 +48,8 @@ io.on("connection", (socket) => {
     document_trackingNumber(io);
   });
 
-  socket.on("total_pending_doc", () => {
-    total_pending_doc(socket);
+  socket.on("total_pending_doc", (user_id) => {
+    total_pending_doc( user_id,socket);
   });
 
   socket.on("document_logs", () => {
@@ -68,4 +69,6 @@ io.on("connection", (socket) => {
   });
 });
 
-api.listen(process.env.PORT);
+http_server.listen(PORT, () => {
+  console.log("SERVER IS RUNNING ON PORT: " + PORT);
+});

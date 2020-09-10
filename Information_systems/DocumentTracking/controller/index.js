@@ -101,6 +101,7 @@ router.post("/user/delete", async (req, res) => {
 /* ======================================================== */
 //Current System Users
 router.get("/user/:userId", async (req, res) => {
+  
   await model.userInfo(req.params.userId, res);
 });
 /* ======================================================== */
@@ -108,6 +109,7 @@ router.get("/user/:userId", async (req, res) => {
 /* ======================================================== */
 //Section Users
 router.get("/users/section/:sec_id", async (req, res) => {
+  console.log(req.params.sec_id);
   await model.section_users(req.params.sec_id, res);
 });
 /* ======================================================== */
@@ -137,9 +139,28 @@ router.post("/document/action", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
-//Document Category
-router.get("/category/:user_id", async (req, res) => {
+// Manage Document Category
+// Fetch User Document Category
+router.get("/user/document/category/:user_id", async (req, res) => {
   await model.doc_category(req.params.user_id, res);
+});
+
+// Add New Document Category
+router.post("/user/document/category/new", async (req, res) => {
+  const { user_id, category } = req.body;
+  model.doc_category_new(user_id, category, res);
+});
+
+// Update Document Category
+router.post("/user/document/category/update", async (req, res) => {
+  const {data, user_id} = req.body;
+  model.doc_category_update(data, user_id, res);
+});
+
+// Delete Document Category
+router.post("/user/document/category/delete", async (req, res) => {
+  const {doc_category_id} = req.body;
+  model.doc_category_delete(doc_category_id, res)
 });
 /* ======================================================== */
 

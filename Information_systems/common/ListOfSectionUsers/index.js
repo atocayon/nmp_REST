@@ -11,17 +11,19 @@ const section_users = (sec_id, res) => {
   sql += "a.email AS email, ";
   sql += "a.section AS secid, ";
   sql += "a.position AS position, ";
-  sql += "a.role AS role, ";
+  sql += "d.dts_role AS dts_role, ";
+  sql += "d.work_queue_role AS work_queue_role, ";
   sql += "a.status AS status, ";
   sql += "b.section AS section, ";
   sql += "b.secshort AS secshort, ";
   sql += "c.department AS department, ";
   sql += "c.depshort AS depshort ";
   sql += "FROM users a ";
-  sql += "JOIN sections b ";
+  sql += "LEFT JOIN sections b ";
   sql += "ON a.section = b.secid ";
-  sql += "JOIN divisions c ";
+  sql += "LEFT JOIN divisions c ";
   sql += "ON b.divid = c.depid ";
+  sql += "LEFT JOIN users_role d ON a.user_id = d.user_id ";
   sql += "WHERE a.section = ? ORDER BY a.name ASC ";
   db().query(sql, [sec_id], function (err, rows, fields) {
     if (err) {
@@ -29,6 +31,7 @@ const section_users = (sec_id, res) => {
       return res.status(500).send(err);
     }
 
+    console.log(rows);
     return res.status(200).send(rows);
   });
 };

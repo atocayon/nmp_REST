@@ -13,7 +13,12 @@ const deleted_user_accnt = require("../../common/User_Management/delete_user_acc
 
 const document_trackingNumber = require("./document_trackingNumber");
 const document_action = require("./document_action");
+
 const doc_category = require("./document_category");
+const doc_category_new = require("./document_category_new");
+const doc_category_update = require("./document_category_update");
+const doc_category_delete = require("./document_category_delete");
+
 const document_info = require("./document_info");
 const document_action_req = require("./document_action_req");
 const document_destination = require("./document_destination");
@@ -78,7 +83,12 @@ const dtsModel = {
 
   document_trackingNumber: document_trackingNumber,
   document_action: document_action,
+
   doc_category: doc_category,
+  doc_category_new: doc_category_new,
+  doc_category_update: doc_category_update,
+  doc_category_delete: doc_category_delete,
+
   document_info: document_info,
   document_action_req: document_action_req,
   document_destination: document_destination,
