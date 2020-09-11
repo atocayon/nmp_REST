@@ -10,21 +10,21 @@ const user_list = (res) => {
     sql += "a.email AS email, ";
     sql += "a.section AS secid, ";
     sql += "a.position AS position, ";
-    sql += "a.role AS role_id, ";
+    sql += "d.dts_role, ";
+    sql += "d.work_queue_role, ";
     sql += "b.section AS section, ";
     sql += "b.secshort AS secshort, ";
     sql += "c.department AS department, ";
     sql += "c.depshort AS depshort, ";
-    sql += "d.role AS role, ";
     sql += "e.status AS accnt_status ";
     sql += "FROM users a ";
-    sql += "JOIN sections b ";
+    sql += "LEFT JOIN sections b ";
     sql += "ON a.section = b.secid ";
-    sql += "JOIN divisions c ";
+    sql += "LEFT JOIN divisions c ";
     sql += "ON b.divid = c.depid ";
-    sql += "JOIN users_role d ";
-    sql += "ON a.role = d.role_id ";
-    sql += "JOIN users_status e ";
+    sql += "LEFT JOIN users_role d ";
+    sql += "ON a.user_id = d.user_id ";
+    sql += "LEFT JOIN users_status e ";
     sql += "ON a.status = e.status_id ";
     sql += "ORDER BY a.user_id ASC ";
     db().query(sql, function (err, rows, fields) {

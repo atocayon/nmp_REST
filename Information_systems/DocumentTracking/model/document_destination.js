@@ -15,7 +15,7 @@ const document_destination = (doc_id, res) => {
   sql += "WHERE a.document_id = ? ";
   sql += "AND a.status = ?";
 
-  db().query(sql, [docId, "1"], function (err, rows, fields) {
+  db().query(sql, [doc_id, "1"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

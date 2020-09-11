@@ -8,7 +8,6 @@ const total_pending_documents = (user_id, socket) => {
       console.log(err);
       throw err;
     }
-    console.log(rows.length);
     socket.emit("total_pendings", rows.length);
   });
 };

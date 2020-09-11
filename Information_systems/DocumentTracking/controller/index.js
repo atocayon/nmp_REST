@@ -228,8 +228,8 @@ router.get("/document/expand/:doc_id/:status", async (req, res) => {
 
 /* ======================================================== */
 //Document Types
-router.get("/document/types", async (req, res) => {
-  await model.document_types(res);
+router.get("/document/list/types",  async (req, res) => {
+   await model.document_types(res);
 });
 
 //Document Type info

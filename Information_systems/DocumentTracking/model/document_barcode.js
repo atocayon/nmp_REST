@@ -7,7 +7,7 @@ const document_barcode = (doc_id, res) => {
   sql += "FROM documents a ";
   sql += "WHERE a.documentID = ? ";
 
-  db().query(sql, [docId], function (err, rows, fields) {
+  db().query(sql, [doc_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
