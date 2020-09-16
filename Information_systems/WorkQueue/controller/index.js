@@ -6,6 +6,18 @@ const socketIO = require("socket.io");
 const http_server = http.createServer(api);
 const io = socketIO(http_server);
 const model = require("../model");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "C:/Users/actocayon/Desktop/react_projects/uploaded_file");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage }).any();
 
 /* ======================================================== */
 router.get("/", async (req, res) => {
@@ -66,6 +78,27 @@ router.post("/new/job-request", async (req, res) => {
 /* ======================================================== */
 router.get("/client/job-requests/:user_id", async (req, res) => {
   await model.client_job_request(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+router.post("/web_upload", (req, res) => {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+
+    model.web_upload(
+      req.body.requisitioner,
+      req.body.file_name,
+     
+      req.files,
+      req.body.destination.split(','),
+      res
+    );
+  });
 });
 /* ======================================================== */
 
