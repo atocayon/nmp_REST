@@ -93,12 +93,34 @@ router.post("/web_upload", (req, res) => {
     model.web_upload(
       req.body.requisitioner,
       req.body.file_name,
-     
+
       req.files,
-      req.body.destination.split(','),
+      req.body.destination.split(","),
       res
     );
   });
+});
+/* ======================================================== */
+
+/* ======================================================== */
+// Web uplaod list
+router.get("/web_upload_list/:user_id", (req, res) => {
+  model.web_upload_lists(req.params.user_id, res);
+});
+
+// Web uplaod destination
+router.get("/web_upload_destination/:web_upload_id", (req, res) => {
+  model.web_upload_destination(req.params.web_upload_id, res);
+});
+
+// Web upload file
+router.get("/web_upload_file/:web_upload_id", (req, res) => {
+  model.web_upload_file(req.params.web_upload_id, res);
+});
+
+// Web upload logs
+router.get("/web_upload_logs/:web_upload_id", (req, res) => {
+  model.web_upload_logs(req.params.web_upload_id, res);
 });
 /* ======================================================== */
 
