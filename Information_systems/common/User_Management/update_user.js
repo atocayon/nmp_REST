@@ -17,8 +17,7 @@ const update_user = (data, res) => {
       sql1 += "contact = ?, ";
       sql1 += "email = ?, ";
       sql1 += "section = ?, ";
-      sql1 += "position = ?, ";
-      sql1 += "role = ? ";
+      sql1 += "position = ? ";
       sql1 += "WHERE user_id = ? ";
       db().query(
         sql1,
@@ -30,7 +29,6 @@ const update_user = (data, res) => {
           data.email,
           data.secid,
           data.position,
-          data.role_id,
           data.user_id,
         ],
         function (err, result) {

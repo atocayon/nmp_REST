@@ -28,9 +28,9 @@ const section_documents = (user_id, folder_name, res) => {
       sql += "a.creator as creatorID, ";
       sql += "d.name as creator ";
       sql += "FROM documents a ";
-      sql += "JOIN document_type b ";
+      sql += "LEFT JOIN document_type b ";
       sql += "ON a.doc_type = b.id ";
-      sql += "JOIN users d ";
+      sql += "LEFT JOIN users d ";
       sql += "ON a.creator = d.user_id ";
       sql += "WHERE d.section = ? ";
       sql += "AND a.status = ? ";

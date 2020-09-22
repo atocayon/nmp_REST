@@ -1,4 +1,5 @@
 const userInfo = require("../../common/Get_UserInfo");
+const update_user_info = require("../../common/User_Management/update_user");
 const user_login = require("../../common/User_Management/usersLogin");
 const user_logout = require("../../common/User_Management/usersLogout");
 const sectionList = require("../../common/ManageSections/section_list");
@@ -8,6 +9,7 @@ const web_upload = require("./web_upload");
 const web_upload_requests = require("./web_upload_lists");
 const workQueueModel = {
   userInfo: userInfo,
+  update_user_info: update_user_info,
   user_login: user_login,
   user_logout: user_logout,
   sectionList: sectionList,

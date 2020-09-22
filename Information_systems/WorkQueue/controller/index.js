@@ -32,6 +32,13 @@ router.get("/user/:user_id", async (req, res) => {
   await model.userInfo(req.params.user_id, res);
 });
 
+// Update user info
+router.post("/user/update", async (req, res) => {
+  const { data } = req.body;
+
+  await model.update_user_info(data, res);
+});
+
 /* ======================================================== */
 
 /* ======================================================== */

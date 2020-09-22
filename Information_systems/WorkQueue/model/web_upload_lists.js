@@ -8,7 +8,7 @@ const web_upload_lists = (user_id, res) => {
   sql += "a.id, ";
   sql += "a.upload_title, ";
   sql += "a.validator, ";
-  sql += "a.date_time AS date_time_requested ";
+  sql += "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time_requested ";
   sql += "FROM web_upload a WHERE a.requisitioner = ?";
 
   db().query(sql, [user_id], async (err, res_sql, fields) => {
@@ -80,7 +80,7 @@ const web_upload_logs = (req_sql_id, res) => {
   sql += "a.host_computer, ";
   sql += "a.network_group, ";
   sql += "a.status, ";
-  sql += "a.date_time ";
+  sql += "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time ";
   sql += "FROM web_upload_logs a ";
   sql += "WHERE a.web_upload_id = ? ";
 
