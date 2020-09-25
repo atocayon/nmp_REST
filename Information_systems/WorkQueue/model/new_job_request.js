@@ -83,7 +83,7 @@ const insert_work_queue_task = (
   let insert_task_queury = "";
   insert_task_queury += "INSERT INTO work_queue_task ";
   insert_task_queury +=
-    "(id, requisitioner, scope_of_work, section, deadline) VALUES ?";
+    "(id, requisitioner, scope_of_work, section, deadline, date) VALUES ?";
   const task = [
     [
       task_id,
@@ -91,6 +91,7 @@ const insert_work_queue_task = (
       scopeOfWork !== "" ? scopeOfWork : null,
       task_secid,
       dateNeeded !== "" ? get_date(dateNeeded) : null,
+      get_date(Date.now())
     ],
   ];
   db().query(insert_task_queury, [task], (err, rows, fields) => {

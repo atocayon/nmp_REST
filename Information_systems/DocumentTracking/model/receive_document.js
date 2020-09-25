@@ -2,6 +2,8 @@ const db = require("../../../config/Database_config/db");
 const email = require("../../../config/Email_config/email_config");
 const total_pending_documents = require("./total_pending_documents");
 const dateTime = require("../../common/Get_CurrentDateTime");
+require("dotenv/config");
+
 const receive_document = (
   documentTracking,
   user_id,
@@ -129,7 +131,7 @@ const receive_document = (
 
                         for (let x = 0; x < res_emailDes.length; x++) {
                           let mailOptions = {
-                            from: "nationalmaritimepolytechnic@gmail.com",
+                            from: process.env.EMAIL_AUTH_USER,
                             to: res_emailDes[x].email,
                             subject: "NMP|DTS Notification",
                             text:

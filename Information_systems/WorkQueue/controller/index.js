@@ -42,6 +42,17 @@ router.post("/user/update", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Users Change Password
+
+// Code generation
+router.post("/users/code/generate", (req, res) => {
+  const { user_id, email } = req.body;
+
+  model.users_changePass_codeGenerate(user_id, email, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 //User Login
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
