@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const db = require("../../../config/Database_config/db");
 const listOfActiveUsers = require("../ListOfActiveUsers/users");
 
-const usersLogin = (usernameOrEmail, password, io, res) => {
+const usersLogin = (usernameOrEmail, password, res) => {
   let sql = "";
   sql += "SELECT ";
   sql += "a.user_id AS user_id, ";
@@ -61,7 +61,7 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
                 console.log(err);
                 return res.status(500).send(err);
               }
-              listOfActiveUsers(io);
+              listOfActiveUsers();
 
               return res.status(200).send(data);
             });
@@ -76,7 +76,7 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
                 return res.status(500).send(err);
               }
               if (result) {
-                listOfActiveUsers(io);
+                listOfActiveUsers();
                 return res.status(200).send(data);
               }
             });

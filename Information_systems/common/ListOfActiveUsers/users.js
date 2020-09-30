@@ -1,6 +1,6 @@
 const db = require("../../../config/Database_config/db");
 
-const fetchUserActiveList = (io) => {
+const fetchUserActiveList = () => {
     let sql = "";
     sql += "SELECT  ";
     sql += "a.timeStamp AS timeStamp, ";

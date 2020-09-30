@@ -2,7 +2,7 @@ const express = require("express");
 const http = require("http");
 const api = express();
 const http_server = http.createServer(api);
-const io = require("socket.io")(http_server, { origins: "*:*" });
+global.io = require("socket.io")(http_server, { origins: "*:*" });
 // const io = socketIO(http_server);
 const PORT = process.env.PORT || 4000;
 

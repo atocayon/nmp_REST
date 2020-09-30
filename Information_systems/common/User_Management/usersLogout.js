@@ -1,7 +1,7 @@
 const db = require("../../../config/Database_config/db");
 const listOfActiveUsers = require("../ListOfActiveUsers/users");
 
-const usersLogout = (userId, io, res) => {
+const usersLogout = (userId, res) => {
     const sql = "UPDATE users_session SET isDeleted = ? WHERE userId = ?";
     db().query(sql, ["1", userId], async (err, result) => {
         if (err) {
@@ -10,7 +10,7 @@ const usersLogout = (userId, io, res) => {
         }
 
         if (result) {
-            await listOfActiveUsers(io);
+            await listOfActiveUsers();
             return res.status(200).send("logout success");
         }
     });

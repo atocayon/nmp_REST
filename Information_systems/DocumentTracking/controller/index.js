@@ -1,11 +1,7 @@
-const http = require("http");
 const express = require("express");
 const router = express.Router();
-const api = express();
-const socketIO = require("socket.io");
-const http_server = http.createServer(api);
-const io = socketIO(http_server);
 const model = require("../model");
+
 /* ======================================================== */
 router.get("/", (req, res) => {
   res.send("Document Tracking Information System");
@@ -24,7 +20,7 @@ router.get("/users", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
-  await model.usersLogin(usernameOrEmail, password, io, res);
+  await model.usersLogin(usernameOrEmail, password, res);
 });
 /* ======================================================== */
 
@@ -33,7 +29,7 @@ router.post("/login", async (req, res) => {
 router.post("/logout", async (req, res) => {
   const { userId } = req.body;
 
-  await model.usersLogout(userId, io, res);
+  await model.usersLogout(userId, res);
 });
 /* ======================================================== */
 
@@ -101,7 +97,6 @@ router.post("/user/delete", async (req, res) => {
 /* ======================================================== */
 //Current System Users
 router.get("/user/:userId", async (req, res) => {
-  
   await model.userInfo(req.params.userId, res);
 });
 /* ======================================================== */
@@ -153,14 +148,14 @@ router.post("/user/document/category/new", async (req, res) => {
 
 // Update Document Category
 router.post("/user/document/category/update", async (req, res) => {
-  const {data, user_id} = req.body;
+  const { data, user_id } = req.body;
   model.doc_category_update(data, user_id, res);
 });
 
 // Delete Document Category
 router.post("/user/document/category/delete", async (req, res) => {
-  console.log("andakjfdaksjdf")
-  const {doc_category_id} = req.body;
+  console.log("andakjfdaksjdf");
+  const { doc_category_id } = req.body;
 
   model.doc_category_delete(doc_category_id, res);
 });
@@ -230,8 +225,8 @@ router.get("/document/expand/:doc_id/:status", async (req, res) => {
 
 /* ======================================================== */
 //Document Types
-router.get("/document/list/types",  async (req, res) => {
-   await model.document_types(res);
+router.get("/document/list/types", async (req, res) => {
+  await model.document_types(res);
 });
 
 //Document Type info

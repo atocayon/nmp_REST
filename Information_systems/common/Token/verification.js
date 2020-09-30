@@ -7,11 +7,12 @@ router.post("/", (req, res) => {
 
   const sql = "SELECT * FROM users_session WHERE userId = ?";
   db().query(sql, [token], function (err, rows, fields) {
-    if (err) {
+      if (err) {
       console.log(err);
       res.status(500).send(err);
     }
 
+    console.log(rows[0]);
     res.status(200).json(rows[0]);
   });
 });

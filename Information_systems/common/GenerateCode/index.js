@@ -14,7 +14,7 @@ const users_ChangePasswordCode = (user_id, email, res) => {
 
     let mailOptions = {
       from: process.env.EMAIL_AUTH_USER,
-      to: email,
+      to: "atocayon27@gmail.com",
       subject: "NMP|Work Queue Information System",
       text: "Your code is " + generatedCode + ".",
     };
