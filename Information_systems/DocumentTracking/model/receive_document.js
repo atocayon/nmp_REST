@@ -25,10 +25,8 @@ const receive_document = (
           rows[i].destinationType === "Internal" &&
           rows[i].status === "1" &&
           rows[i].user_id === user_id &&
-          rows[i].user_id === user_id &&
           rows[i].notification === "0"
         ) {
-          console.log("gn receive na ini");
           callback("failed");
           break;
         }
@@ -48,7 +46,7 @@ const receive_document = (
               "none",
               "1",
               "0",
-              dateTime,
+              dateTime(),
             ],
           ];
           db().query(insertExternal, [val], function (err, result) {
@@ -89,7 +87,7 @@ const receive_document = (
               "none",
               "1",
               "0",
-              dateTime,
+              dateTime(),
             ],
           ];
           db().query(insertInternal, [val1], function (err, result) {

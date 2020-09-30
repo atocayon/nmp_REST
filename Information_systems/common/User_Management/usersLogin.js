@@ -11,7 +11,7 @@ const usersLogin = (usernameOrEmail, password, io, res) => {
   sql += "b.dts_role, ";
   sql += "b.work_queue_role ";
   sql += "FROM users a ";
-  sql += "JOIN users_role b ";
+  sql += "LEFT JOIN users_role b ";
   sql += "ON a.user_id = b.user_id ";
   sql += "WHERE email = ? OR username = ?";
 

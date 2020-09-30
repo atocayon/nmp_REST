@@ -7,7 +7,9 @@ const new_job_request = require("./new_job_request");
 const client_job_request = require("./client_job_requests");
 const web_upload = require("./web_upload");
 const web_upload_requests = require("./web_upload_lists");
-const users_changePass_codeGenerate = require("../../common/Users_ChangePasswordCode");
+const users_changePass_codeGenerate = require("../../common/GenerateCode");
+const users_changePassword = require("../../common/ChangePassword");
+const validateCode = require("../../common/ValdateCode");
 const workQueueModel = {
   userInfo: userInfo,
   update_user_info: update_user_info,
@@ -21,7 +23,9 @@ const workQueueModel = {
   web_upload_destination: web_upload_requests.web_upload_destination,
   web_upload_file: web_upload_requests.web_upload_file,
   web_upload_logs: web_upload_requests.web_upload_logs,
-  users_changePass_codeGenerate: users_changePass_codeGenerate
+  users_changePass_codeGenerate: users_changePass_codeGenerate,
+  users_changePassword: users_changePassword,
+  validateCode: validateCode
 };
 
 module.exports = workQueueModel;

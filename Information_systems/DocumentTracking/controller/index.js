@@ -159,8 +159,10 @@ router.post("/user/document/category/update", async (req, res) => {
 
 // Delete Document Category
 router.post("/user/document/category/delete", async (req, res) => {
+  console.log("andakjfdaksjdf")
   const {doc_category_id} = req.body;
-  model.doc_category_delete(doc_category_id, res)
+
+  model.doc_category_delete(doc_category_id, res);
 });
 /* ======================================================== */
 
@@ -287,7 +289,7 @@ router.get("/document/sub/:doc_id", async (req, res) => {
 
 //Sub Process
 router.get("/document/process/:doc_id", async (req, res) => {
-  await model.sub_process(res.params.doc_id, res);
+  await model.sub_process(req.params.doc_id, res);
 });
 /* ======================================================== */
 

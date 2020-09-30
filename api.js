@@ -1,9 +1,8 @@
-
 const express = require("express");
 const http = require("http");
 const api = express();
 const http_server = http.createServer(api);
-const io = require("socket.io")(http_server, { origins: '*:*'});
+const io = require("socket.io")(http_server, { origins: "*:*" });
 // const io = socketIO(http_server);
 const PORT = process.env.PORT || 4000;
 
@@ -11,7 +10,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv/config");
 api.use(cors());
-
 
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +29,7 @@ const document_trackingNumber = require("./Information_systems/DocumentTracking/
 const total_pending_doc = require("./Information_systems/DocumentTracking/model/total_pending_documents");
 const document_logs = require("./Information_systems/DocumentTracking/model/document_logs");
 const receive_document = require("./Information_systems/DocumentTracking/model/receive_document");
+
 //User Verification
 api.use("/", tokenVerification); // DTS
 
@@ -51,7 +50,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("total_pending_doc", (user_id) => {
-    total_pending_doc( user_id,socket);
+    total_pending_doc(user_id, socket);
   });
 
   socket.on("document_logs", () => {
@@ -61,7 +60,14 @@ io.on("connection", (socket) => {
   socket.on(
     "receive_document",
     (documentTracking, user_id, user_section, callback) => {
-      receive_document(socket);
+      receive_document(
+        documentTracking,
+        user_id,
+        user_section,
+        callback,
+        socket
+      );
+
     }
   );
 

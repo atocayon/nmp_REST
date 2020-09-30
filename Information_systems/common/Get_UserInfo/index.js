@@ -22,7 +22,7 @@ const user_info = (user_id, res) => {
     sql += "ON a.section = b.secid ";
     sql += "JOIN divisions c ";
     sql += "ON b.divid = c.depid ";
-    sql += "JOIN users_role d ";
+    sql += "LEFT JOIN users_role d ";
     sql += "ON a.user_id = d.user_id ";
     sql += "WHERE a.user_id = ? ";
     db().query(sql, [parseInt(user_id)], function (err, rows, fields) {

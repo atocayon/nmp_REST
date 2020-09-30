@@ -2,8 +2,9 @@ const db = require("../../../config/Database_config/db");
 
 const document_category_delete = (doc_category_id, res) => {
   const sql = "DELETE FROM doc_category WHERE id = ?";
-  connection.query(sql, [parseInt(doc_category_id)], function (err, result) {
+  db().query(sql, [parseInt(doc_category_id)], function (err, result) {
     if (err) {
+      console.log(err);
       return res.status(500).send(err);
     }
 

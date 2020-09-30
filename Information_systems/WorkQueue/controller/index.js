@@ -50,6 +50,18 @@ router.post("/users/code/generate", (req, res) => {
 
   model.users_changePass_codeGenerate(user_id, email, res);
 });
+
+// Validate code
+router.post("/users/code/validate", (req, res) => {
+  const { users_id, code } = req.body;
+  model.validateCode(users_id, code, res);
+});
+
+// Change password
+router.post("/users/change/password", (req, res) => {
+  const { user_id, new_password } = req.body;
+  model.users_changePassword(user_id, new_password, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */

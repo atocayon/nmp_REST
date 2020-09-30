@@ -6,13 +6,13 @@ const document_sched_released = (receiver_id, doc_id, res) => {
     "SELECT DATE_FORMAT(date_time, '%c/%d/%y %h:%i %p') AS date_time_released ";
   sql += "FROM documentLogs ";
   sql += "WHERE user_id = ? AND document_id = ? AND (status = ? || status =?)";
-  db().query(sql, [receiver_id, docId, "2", "4"], function (err, rows, fields) {
+  db().query(sql, [receiver_id, doc_id, "2", "4"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
     }
 
-    return res.status(200).send(rows[0].date_time_released);
+    return res.status(200).send(rows[0]);
   });
 };
 
