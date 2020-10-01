@@ -10,10 +10,10 @@ const document_logs = (io) => {
   sql += "d.status AS status ";
   sql += "FROM documents a  ";
   sql +=
-    "JOIN (SELECT MAX(trans_id) as trans, document_id FROM documentLogs GROUP BY document_id) b ON a.documentID = b.document_id ";
-  sql += "JOIN documentLogs e ON b.document_id = e.document_id  ";
+    "JOIN (SELECT MAX(trans_id) as trans, document_id FROM documentlogs GROUP BY document_id) b ON a.documentID = b.document_id ";
+  sql += "JOIN documentlogs e ON b.document_id = e.document_id  ";
   sql += "JOIN users c ON e.user_id = c.user_id ";
-  sql += "JOIN documentStatus d ON e.status = d.statid  ";
+  sql += "JOIN documentstatus d ON e.status = d.statid  ";
   sql += "ORDER BY date_time DESC ";
 
   db().query(sql, (err, rows, fields) => {

@@ -12,7 +12,7 @@ const pending_documents = (user_id, res) => {
   sql += "a.destinationType AS destinationType, ";
   sql += "a.document_id AS documentId, ";
   sql += "DATE_FORMAT(b.date_time_created, '%Y%m%d') AS date_time_created ";
-  sql += "FROM documentLogs a ";
+  sql += "FROM documentlogs a ";
   sql += "JOIN documents b ";
   sql += "ON a.document_id = b.documentID ";
   sql += "JOIN document_type c ";

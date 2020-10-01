@@ -69,7 +69,7 @@ const new_document = (
             }
 
             const sql3 =
-              "INSERT INTO documentLogs (document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+              "INSERT INTO documentlogs (document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
 
             db().query(sql3, [destination], function (err, result) {
               if (err) {
@@ -106,7 +106,7 @@ const new_document = (
             }
 
             const sql5 =
-              "INSERT INTO documentLogs (document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+              "INSERT INTO documentlogs (document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
             const values5 = [
               [
                 document_id,

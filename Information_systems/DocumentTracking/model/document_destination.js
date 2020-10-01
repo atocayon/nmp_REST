@@ -7,7 +7,7 @@ const document_destination = (doc_id, res) => {
   sql += "b.name AS receiver, ";
   sql += "a.user_id AS receiver_id, ";
   sql += "c.secshort AS section ";
-  sql += "FROM documentLogs a ";
+  sql += "FROM documentlogs a ";
   sql += "JOIN users b ";
   sql += "ON a.user_id = b.user_id ";
   sql += "JOIN sections c ";

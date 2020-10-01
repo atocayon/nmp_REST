@@ -10,7 +10,7 @@ const insert_document_logs = (
   res
 ) => {
   let sql1 = "";
-  sql1 += "INSERT INTO documentLogs ";
+  sql1 += "INSERT INTO documentlogs ";
   sql1 += "(document_id, user_id, ";
   sql1 += "remarks, destinationType, destination, ";
   sql1 += "status, notification, date_time ) ";

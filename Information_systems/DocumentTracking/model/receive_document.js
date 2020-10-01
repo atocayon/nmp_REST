@@ -11,7 +11,7 @@ const receive_document = (
   callback,
   socket
 ) => {
-  const sql = "SELECT * FROM documentLogs WHERE document_id = ?";
+  const sql = "SELECT * FROM documentlogs WHERE document_id = ?";
 
   db().query(sql, [documentTracking], function (err, rows, fields) {
     if (err) {
@@ -36,7 +36,7 @@ const receive_document = (
           rows[i].status === "2"
         ) {
           const insertExternal =
-            "INSERT INTO documentLogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+            "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
           const val = [
             [
               documentTracking,
@@ -69,7 +69,7 @@ const receive_document = (
           rows[i].notification === "0"
         ) {
           let insertInternal = "";
-          insertInternal += "INSERT INTO documentLogs ";
+          insertInternal += "INSERT INTO documentlogs ";
           insertInternal += "(document_id, ";
           insertInternal += "user_id, ";
           insertInternal += "remarks, ";
@@ -145,7 +145,7 @@ const receive_document = (
                               console.log("Email sent: " + info.response);
 
                               const update =
-                                "UPDATE documentLogs SET notification =  ? WHERE status = ? AND destination = ? AND document_id = ?";
+                                "UPDATE documentlogs SET notification =  ? WHERE status = ? AND destination = ? AND document_id = ?";
                               db().query(
                                 update,
                                 ["1", "2", user_section, documentTracking],

@@ -7,10 +7,10 @@ const user_document_logs = (user_id, res) => {
   sql += "b.subject AS subject, ";
   sql += "c.type AS type, ";
   sql += "d.status AS status ";
-  sql += "FROM documentLogs a ";
+  sql += "FROM documentlogs a ";
   sql += "LEFT JOIN documents b ON a.document_id = b.documentID ";
   sql += "LEFT JOIN document_type c ON b.doc_type = c.id ";
-  sql += "LEFT JOIN documentStatus d ON a.status = d.statid ";
+  sql += "LEFT JOIN documentstatus d ON a.status = d.statid ";
   sql += "WHERE a.user_id = ? ";
   sql += "AND (a.status = ? OR a.status = ?) ";
   sql += "ORDER BY date_time DESC";

@@ -10,7 +10,7 @@ const document_action = (
   res
 ) => {
   const level =
-    "SELECT * FROM documentLogs WHERE document_id = ? AND status = ? AND user_id = ? AND notification = ?";
+    "SELECT * FROM documentlogs WHERE document_id = ? AND status = ? AND user_id = ? AND notification = ?";
   db().query(level, [documentId, "1", user_id, "0"], function (
     err,
     rows,
@@ -24,7 +24,7 @@ const document_action = (
     if (status === "2") {
       if (typeof destination === "string") {
         const insertLogs2 =
-          "INSERT INTO documentLogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+          "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
         const valInsertLogs2 = [
           [
             documentId,
@@ -43,7 +43,7 @@ const document_action = (
             return res.status(500).send(err);
           }
           let updateLogs2 = "";
-          updateLogs2 += "UPDATE documentLogs SET ";
+          updateLogs2 += "UPDATE documentlogs SET ";
           updateLogs2 += "notification   = ? ";
           updateLogs2 += "WHERE document_id = ? ";
           updateLogs2 += "AND user_id = ? ";
@@ -105,7 +105,7 @@ const document_action = (
               }
 
               const insertLogs =
-                "INSERT INTO documentLogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+                "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
 
               db().query(insertLogs, [insertLogsVal], function (
                 err,
@@ -116,7 +116,7 @@ const document_action = (
                   return res.status(500).send(err);
                 }
                 let updateLogs = "";
-                updateLogs += "UPDATE documentLogs SET ";
+                updateLogs += "UPDATE documentlogs SET ";
                 updateLogs += "notification   = ? ";
                 updateLogs += "WHERE document_id = ? ";
                 updateLogs += "AND user_id = ? ";
@@ -140,7 +140,7 @@ const document_action = (
       }
     } else {
       const insertLogs3 =
-        "INSERT INTO documentLogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
+        "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
       const values = [
         [
           documentId,
@@ -161,7 +161,7 @@ const document_action = (
         }
 
         let updateLogs3 = "";
-        updateLogs3 += "UPDATE documentLogs SET ";
+        updateLogs3 += "UPDATE documentlogs SET ";
         updateLogs3 += "notification   = ? ";
         updateLogs3 += "WHERE document_id = ? ";
         updateLogs3 += "AND user_id = ? ";
