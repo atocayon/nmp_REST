@@ -54,6 +54,7 @@ router.post("/users/code/generate", (req, res) => {
 // Validate code
 router.post("/users/code/validate", (req, res) => {
   const { users_id, code } = req.body;
+  console.log("validation nadara");
   model.validateCode(users_id, code, res);
 });
 
@@ -68,7 +69,7 @@ router.post("/users/change/password", (req, res) => {
 //User Login
 router.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;
-  await model.user_login(usernameOrEmail, password, io, res);
+  await model.user_login(usernameOrEmail, password, res);
 });
 /* ======================================================== */
 
@@ -76,7 +77,7 @@ router.post("/login", async (req, res) => {
 //User Logout
 router.post("/logout", async (req, res) => {
   const { user_id } = req.body;
-  await model.user_logout(user_id, io, res);
+  await model.user_logout(user_id, res);
 });
 
 /* ======================================================== */
