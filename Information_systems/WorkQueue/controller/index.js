@@ -113,6 +113,14 @@ router.get("/client/job-requests/:user_id", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Admin side
+// List of job requests
+router.get("/admin/job/requests/:user_id", async(req, res) => {
+  await model.job_requests(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 router.post("/web_upload", (req, res) => {
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
