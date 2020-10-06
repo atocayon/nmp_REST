@@ -115,7 +115,7 @@ router.get("/client/job-requests/:user_id", async (req, res) => {
 /* ======================================================== */
 // Admin side
 
-// List of job requests
+// List of job requests to admin
 router.get("/admin/job/requests/:user_id", async (req, res) => {
   await model.job_requests(req.params.user_id, res);
 });
@@ -124,6 +124,19 @@ router.get("/admin/job/requests/:user_id", async (req, res) => {
 router.post("/admin/job/request/action", async (req, res) => {
   const { inspector_id, task_id, status, remarks } = req.body;
   await model.job_request_action(inspector_id, task_id, status, remarks, res);
+});
+
+// List of accepted job request to admin
+router.get("/admin/job/list/:user_id", async (req, res) => {
+  await model.admin_job_list(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+// Job request logs
+router.get("/job/request/logs/:task_id", async (req, res) => {
+  
+  await model.job_request_logs(req.params.task_id, res);
 });
 /* ======================================================== */
 
