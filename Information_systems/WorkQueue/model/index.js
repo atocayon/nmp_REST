@@ -11,6 +11,7 @@ const users_changePass_codeGenerate = require("../../common/GenerateCode");
 const users_changePassword = require("../../common/ChangePassword");
 const validateCode = require("../../common/ValdateCode");
 const job_requests = require("./job_requests");
+const job_request_action = require("./job_request_action");
 const workQueueModel = {
   userInfo: userInfo,
   update_user_info: update_user_info,
@@ -27,7 +28,8 @@ const workQueueModel = {
   users_changePass_codeGenerate: users_changePass_codeGenerate,
   users_changePassword: users_changePassword,
   validateCode: validateCode,
-  job_requests: job_requests
+  job_requests: job_requests,
+  job_request_action: job_request_action,
 };
 
 module.exports = workQueueModel;
