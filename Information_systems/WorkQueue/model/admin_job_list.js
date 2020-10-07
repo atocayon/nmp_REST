@@ -15,7 +15,7 @@ const admin_job_list = (user_id, res) => {
   sql += "GROUP_CONCAT(d.task) AS type_of_work ";
   sql += "FROM work_queue_task a ";
   sql +=
-    "LEFT JOIN (SELECT MAX(a.id), a.task_id, a.status  FROM work_queue_logs a GROUP BY a.task_id) b ON a.id = b.task_id ";
+    "LEFT JOIN work_queue_logs b ON a.id = b.task_id AND b.id = (SELECT MAX(id) FROM work_queue_logs bb WHERE bb.task_id = b.task_id) ";
   sql += "LEFT JOIN users c ON a.requisitioner = c.user_id ";
   sql += "LEFT JOIN work_queue_type_of_work d ON a.id = d.task_id ";
   sql += "WHERE a.inspector = ? GROUP BY a.id  ORDER BY a.id DESC";
