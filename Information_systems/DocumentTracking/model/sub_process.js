@@ -14,7 +14,7 @@ const sub_process = (document_id, res) => {
   sql += "JOIN users b ON  a.user_id = b.user_id ";
   sql += "JOIN documentstatus c ON a.status = c.statid ";
   sql += "WHERE a.document_id = ?";
-  db().query(sql, [document_id], function (err, rows, fields) {
+  db.query(sql, [document_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -13,7 +13,7 @@ const document_subject_search = (subj, res) => {
   sql += "ON b.section = d.secid ";
   sql += "WHERE a.subject LIKE ? ORDER BY a.date_time_created DESC";
 
-  db().query(sql, ["%" + subj + "%"], function (err, rows, fields) {
+  db.query(sql, ["%" + subj + "%"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

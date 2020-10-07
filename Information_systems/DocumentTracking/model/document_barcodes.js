@@ -8,7 +8,7 @@ const document_barcodes = (doc_id, res) => {
   sql += "FROM documents a ";
   sql += "JOIN documentlogs b ON a.documentID = b.document_id ";
   sql += "WHERE a.ref = ? AND b.status = ? ";
-  db().query(sql, [doc_id, "2"], function (err, rows, fields) {
+  db.query(sql, [doc_id, "2"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -18,7 +18,7 @@ const document_logs_expand = (doc_id, status, res) => {
     sql += "ON a.status = d.statid ";
     sql += "WHERE a.document_id = ? AND d.status != ?";
     sql += "ORDER BY a.date_time ASC ";
-    db().query(sql, [doc_id, status], function (err, rows, fields) {
+    db.query(sql, [doc_id, status], function (err, rows, fields) {
       if (err) {
         console.log(err);
         return res.status(500).send(err);

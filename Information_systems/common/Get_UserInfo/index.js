@@ -25,7 +25,7 @@ const user_info = (user_id, res) => {
     sql += "LEFT JOIN users_role d ";
     sql += "ON a.user_id = d.user_id ";
     sql += "WHERE a.user_id = ? ";
-    db().query(sql, [parseInt(user_id)], function (err, rows, fields) {
+    db.query(sql, [parseInt(user_id)], function (err, rows, fields) {
         if (err) {
             console.log(err);
             return res.status(500).send(err);

@@ -16,7 +16,7 @@ const document_logs = (io) => {
   sql += "JOIN documentstatus d ON e.status = d.statid  ";
   sql += "ORDER BY date_time DESC ";
 
-  db().query(sql, (err, rows, fields) => {
+  db.query(sql, (err, rows, fields) => {
     if (err) {
       console.log(err);
     }

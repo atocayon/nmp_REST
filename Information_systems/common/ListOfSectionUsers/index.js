@@ -25,7 +25,7 @@ const section_users = (sec_id, res) => {
   sql += "ON b.divid = c.depid ";
   sql += "LEFT JOIN users_role d ON a.user_id = d.user_id ";
   sql += "WHERE a.section = ? ORDER BY a.name ASC ";
-  db().query(sql, [sec_id], function (err, rows, fields) {
+  db.query(sql, [sec_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

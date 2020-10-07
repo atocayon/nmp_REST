@@ -8,7 +8,7 @@ const email_sending = (user_id, subject, destination, res) => {
   selectSender += "FROM users a ";
   selectSender += "JOIN sections b ON a.section = b.secid ";
   selectSender += "WHERE a.user_id = ? ";
-  db().query(selectSender, [parseInt(user_id)], function (
+  db.query(selectSender, [parseInt(user_id)], function (
     err,
     res_sender,
     fields
@@ -27,7 +27,7 @@ const email_sending = (user_id, subject, destination, res) => {
         selectDestination += "JOIN sections b ON a.section = b.secid ";
         selectDestination += "WHERE b.secshort = ? ";
 
-        db().query(selectDestination, [destination[des][4]], function (
+        db.query(selectDestination, [destination[des][4]], function (
           err,
           res_destination,
           fields
@@ -76,7 +76,7 @@ const email_sending = (user_id, subject, destination, res) => {
       selectDestination += "JOIN sections b ON a.section = b.secid ";
       selectDestination += "WHERE b.secshort = ? ";
 
-      db().query(selectDestination, [destination[0][4]], function (
+      db.query(selectDestination, [destination[0][4]], function (
         err,
         rows,
         fields

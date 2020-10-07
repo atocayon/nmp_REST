@@ -6,7 +6,7 @@ const validateCode = (user_id, code, res) => {
   sql += "FROM users_code a ";
   sql += " WHERE a.user_id  = ?  AND a.code = ? ORDER BY id DESC LIMIT 1";
 
-  db().query(sql, [user_id, code], (err, rows, fields) => {
+  db.query(sql, [user_id, code], (err, rows, fields) => {
     if(err){
         console.log(err);
         return res.status(200).send(err);

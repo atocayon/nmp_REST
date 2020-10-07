@@ -3,7 +3,7 @@ const date_today = require("../../common/Get_CurrentDate");
 const web_upload = (requisitioner, upload_title, files, destination, res) => {
   let get_last_id = "";
   get_last_id = "SELECT id FROM web_upload ORDER BY id DESC LIMIT 1";
-  db().query(get_last_id, (err, last_inserted_id, fields) => {
+  db.query(get_last_id, (err, last_inserted_id, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -20,7 +20,7 @@ const web_upload = (requisitioner, upload_title, files, destination, res) => {
       [web_upload_id.toString(), requisitioner, upload_title, null ,date_today(Date.now())],
     ];
 
-    db().query(sql, [values], (err, result) => {
+    db.query(sql, [values], (err, result) => {
       if (err) {
         console.log(err);
         return res.status(500).send(err);
@@ -40,7 +40,7 @@ const web_upload_destination = (web_upload_id, files, destination, res) => {
   let insert_destination =
     "INSERT INTO web_upload_destination (web_upload_id, destination) VALUES ?";
 
-  db().query(insert_destination, [destination_arr], (err, result) => {
+  db.query(insert_destination, [destination_arr], (err, result) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -65,7 +65,7 @@ const web_upload_file = (web_upload_id, files, res) => {
   let insert_file =
     "INSERT INTO web_upload_file (web_upload_id, file_name, file_type, file_size) VALUES ?";
 
-  db().query(insert_file, [files_arr], (err, result) => {
+  db.query(insert_file, [files_arr], (err, result) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

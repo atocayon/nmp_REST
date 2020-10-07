@@ -18,7 +18,7 @@ const userRegistration = (
   email = email.trim();
 
   const sql = "SELECT * FROM users WHERE email = ?";
-  db().query(sql, [email, username], function (err, rows, fields) {
+  db.query(sql, [email, username], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -29,7 +29,7 @@ const userRegistration = (
       return res.status(200).send("email taken");
     } else {
       const checkUsername = "SELECT * FROM users WHERE username = ?";
-      db().query(checkUsername, [username], function (err, rows, fields) {
+      db.query(checkUsername, [username], function (err, rows, fields) {
         if (err) {
           console.log(err);
 
@@ -63,7 +63,7 @@ const userRegistration = (
                 "1",
               ],
             ];
-            db().query(sql1, [values], function (err, result) {
+            db.query(sql1, [values], function (err, result) {
               if (err) {
                 console.log(err);
                 res.status(500).send(err);
@@ -71,7 +71,7 @@ const userRegistration = (
 
               let select = "";
               select += "SELECT * FROM users WHERE username = ?";
-              db().query(select, [username], (err, rows, fields) => {
+              db.query(select, [username], (err, rows, fields) => {
                 if (err) {
                   console.log(err);
                   res.status(500).send(err);
@@ -80,7 +80,7 @@ const userRegistration = (
                 let insert_role =
                   "INSERT INTO users_role (user_id, dts_role) VALUES ?";
                 const role_val = [[rows[0].user_id, role]];
-                db().query(insert_role, [role_val], (err, result) => {
+                db.query(insert_role, [role_val], (err, result) => {
                   if (err) {
                     console.log(err);
                     res.status(500).send(err);

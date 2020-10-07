@@ -20,7 +20,7 @@ const insert_document_logs = (
     [doc_id, user_id, remarks, "Internal", destination, "2", "0", dateTime()],
   ];
 
-  db().query(sql1, [values], function (err, result) {
+  db.query(sql1, [values], function (err, result) {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -56,7 +56,7 @@ const insert_document_destination = (
     ],
   ];
 
-  db().query(sql, [values], function (err, result) {
+  db.query(sql, [values], function (err, result) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

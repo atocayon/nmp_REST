@@ -19,7 +19,7 @@ const client_job_request = (user_id, res) => {
     "LEFT JOIN (SELECT id,task_id, status FROM work_queue_logs ORDER BY id DESC LIMIT 1) c ON a.id = c.task_id ";
   sql += "WHERE a.requisitioner = ?";
 
-  db().query(sql, [parseInt(user_id)], (err, rows, fields) => {
+  db.query(sql, [parseInt(user_id)], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

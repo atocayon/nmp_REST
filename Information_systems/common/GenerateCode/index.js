@@ -6,7 +6,7 @@ const users_ChangePasswordCode = (user_id, email, res) => {
   const generatedCode = Math.ceil(1000 + Math.random() * 9000);
   const sql = "INSERT INTO users_code(user_id, code) VALUES ?";
   const values = [[user_id, generatedCode]];
-  db().query(sql, [values], (err, result) => {
+  db.query(sql, [values], (err, result) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

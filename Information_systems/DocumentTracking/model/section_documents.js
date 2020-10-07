@@ -2,7 +2,7 @@ const db = require("../../../config/Database_config/db");
 
 const section_documents = (user_id, folder_name, res) => {
   const fetchUser = "SELECT * FROM users WHERE user_id = ?";
-  db().query(fetchUser, [parseInt(user_id)], function (err, user_id, fields) {
+  db.query(fetchUser, [parseInt(user_id)], function (err, user_id, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -10,7 +10,7 @@ const section_documents = (user_id, folder_name, res) => {
 
     const fetchCategory =
       "SELECT a.id AS id,a.category AS category FROM doc_category a WHERE a.section_id = ? AND a.category = ?";
-    db().query(fetchCategory, [user_id[0].section, folder_name], function (
+    db.query(fetchCategory, [user_id[0].section, folder_name], function (
       err,
       category,
       fields
@@ -37,7 +37,7 @@ const section_documents = (user_id, folder_name, res) => {
       sql += "AND a.ref = ? ";
       sql += "AND a.category = ? ";
       sql += "ORDER BY a.date_time_created DESC ";
-      db().query(sql, [user_id[0].section, "1", "0", category[0].id], function (
+      db.query(sql, [user_id[0].section, "1", "0", category[0].id], function (
         err,
         rows,
         fields

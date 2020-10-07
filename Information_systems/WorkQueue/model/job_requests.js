@@ -2,7 +2,7 @@ const db = require("../../../config/Database_config/db");
 
 const job_requests = (user_id, res) => {
   let fetch_section = "SELECT a.section FROM users a WHERE user_id = ? ";
-  db().query(fetch_section, [user_id], (err, rows, fields) => {
+  db.query(fetch_section, [user_id], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -22,7 +22,7 @@ const job_requests = (user_id, res) => {
     sql += "LEFT JOIN work_queue_type_of_work c ON a.id = c.task_id ";
     sql += "WHERE a.section = ? AND a.inspector IS NULL GROUP BY a.id ORDER BY a.id";
 
-    db().query(sql, [rows[0].section], (err, rows, fields) => {
+    db.query(sql, [rows[0].section], (err, rows, fields) => {
       if (err) {
         console.log(err);
         return res.status(500).send(err);

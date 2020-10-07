@@ -22,7 +22,7 @@ const document_info = (doc_id, res) => {
   sql += "JOIN sections d ";
   sql += "ON c.section = d.secid ";
   sql += "WHERE a.documentID = ? ORDER BY a.documentID ASC LIMIT 1";
-  db().query(sql, [doc_id], function (err, rows, fields) {
+  db.query(sql, [doc_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

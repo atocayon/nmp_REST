@@ -9,7 +9,7 @@ const job_request_logs = (task_id, res) => {
   sql += "FROM work_queue_logs a ";
   sql += "WHERE a.task_id = ? ORDER BY a.id DESC";
 
-  db().query(sql, [task_id], (err, rows, fields) => {
+  db.query(sql, [task_id], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

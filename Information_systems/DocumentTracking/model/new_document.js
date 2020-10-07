@@ -15,7 +15,7 @@ const new_document = (
   res
 ) => {
   const check = "SELECT * FROM documents WHERE documentID = ?";
-  db().query(check, [parseInt(document_id)], function (err, rows, fields) {
+  db.query(check, [parseInt(document_id)], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -54,7 +54,7 @@ const new_document = (
           ]);
         }
 
-        db().query(sql1, [values], function (err, result) {
+        db.query(sql1, [values], function (err, result) {
           if (err) {
             console.log(err);
             return res.status(500).send(err);
@@ -63,7 +63,7 @@ const new_document = (
           const sql2 =
             "INSERT INTO document_action_req (documentID, action_req) VALUES ?";
 
-          db().query(sql2, [action_req], function (err, result) {
+          db.query(sql2, [action_req], function (err, result) {
             if (err) {
               console.log(err);
             }
@@ -71,7 +71,7 @@ const new_document = (
             const sql3 =
               "INSERT INTO documentlogs (document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
 
-            db().query(sql3, [destination], function (err, result) {
+            db.query(sql3, [destination], function (err, result) {
               if (err) {
                 console.log(err);
               }
@@ -90,7 +90,7 @@ const new_document = (
           [document_id, creator, subject, doc_type, note, "1", "0", category],
         ];
 
-        db().query(sql4, [values4], function (err, result) {
+        db.query(sql4, [values4], function (err, result) {
           if (err) {
             console.log(err);
             return res.status(500).send(err);
@@ -99,7 +99,7 @@ const new_document = (
           const sql5 =
             "INSERT INTO document_action_req (documentID, action_req) VALUES ?";
 
-          db().query(sql5, [action_req], function (err, result) {
+          db.query(sql5, [action_req], function (err, result) {
             if (err) {
               console.log(err);
               return res.status(500).send(err);
@@ -119,7 +119,7 @@ const new_document = (
                 dateTime(),
               ],
             ];
-            db().query(sql5, [values5], function (err, result) {
+            db.query(sql5, [values5], function (err, result) {
               if (err) {
                 console.log(err);
                 return res.status(500).send(err);

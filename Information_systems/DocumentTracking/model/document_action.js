@@ -11,7 +11,7 @@ const document_action = (
 ) => {
   const level =
     "SELECT * FROM documentlogs WHERE document_id = ? AND status = ? AND user_id = ? AND notification = ?";
-  db().query(level, [documentId, "1", user_id, "0"], function (
+  db.query(level, [documentId, "1", user_id, "0"], function (
     err,
     rows,
     fields
@@ -37,7 +37,7 @@ const document_action = (
             dateTime(),
           ],
         ];
-        db().query(insertLogs2, [valInsertLogs2], function (err, result) {
+        db.query(insertLogs2, [valInsertLogs2], function (err, result) {
           if (err) {
             console.log(err);
             return res.status(500).send(err);
@@ -48,7 +48,7 @@ const document_action = (
           updateLogs2 += "WHERE document_id = ? ";
           updateLogs2 += "AND user_id = ? ";
           updateLogs2 += "AND status = ? ";
-          db().query(updateLogs2, ["1", documentId, user_id, "1"], function (
+          db.query(updateLogs2, ["1", documentId, user_id, "1"], function (
             err,
             result
           ) {
@@ -64,7 +64,7 @@ const document_action = (
         if (destination.length > 1) {
           const sql =
             "SELECT a.documentID AS documentId, a.subject AS subject, a.doc_type AS doc_type, a.note AS note FROM documents a WHERE a.documentID =?";
-          db().query(sql, documentId, function (err, doc, fields) {
+          db.query(sql, documentId, function (err, doc, fields) {
             if (err) {
               console.log(err);
               return res.status(500).send(err);
@@ -98,7 +98,7 @@ const document_action = (
             const insert =
               "INSERT INTO documents(documentID, creator, subject,doc_type, note, status, ref) VALUES ?";
 
-            db().query(insert, [forwardArr], function (err, result) {
+            db.query(insert, [forwardArr], function (err, result) {
               if (err) {
                 console.log(err);
                 return res.status(500).send(err);
@@ -107,7 +107,7 @@ const document_action = (
               const insertLogs =
                 "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
 
-              db().query(insertLogs, [insertLogsVal], function (
+              db.query(insertLogs, [insertLogsVal], function (
                 err,
                 result
               ) {
@@ -121,7 +121,7 @@ const document_action = (
                 updateLogs += "WHERE document_id = ? ";
                 updateLogs += "AND user_id = ? ";
                 updateLogs += "AND status = ? ";
-                db().query(
+                db.query(
                   updateLogs,
                   ["1", documentId, user_id, "1"],
                   function (err, result) {
@@ -154,7 +154,7 @@ const document_action = (
         ],
       ];
 
-      db().query(insertLogs3, [values], function (err, result) {
+      db.query(insertLogs3, [values], function (err, result) {
         if (err) {
           console.log(err);
           return res.status(500).send(err);
@@ -166,7 +166,7 @@ const document_action = (
         updateLogs3 += "WHERE document_id = ? ";
         updateLogs3 += "AND user_id = ? ";
         updateLogs3 += "AND status = ? ";
-        db().query(updateLogs3, ["1", documentId, user_id, "1"], function (
+        db.query(updateLogs3, ["1", documentId, user_id, "1"], function (
           err,
           result
         ) {

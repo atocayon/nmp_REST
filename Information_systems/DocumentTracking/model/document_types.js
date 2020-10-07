@@ -2,7 +2,7 @@ const db = require("../../../config/Database_config/db");
 
 const document_types = (res) => {
   const sql = "SELECT id, type FROM document_type";
-  db().query(sql, (err, rows, fields) => {
+  db.query(sql, (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -17,7 +17,7 @@ const new_job_request = (
   check_year += "id FROM work_queue_task ";
   check_year += "ORDER BY id DESC LIMIT 1";
 
-  db().query(check_year, (err, rows, fields) => {
+  db.query(check_year, (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -94,7 +94,7 @@ const insert_work_queue_task = (
       get_date(Date.now())
     ],
   ];
-  db().query(insert_task_queury, [task], (err, rows, fields) => {
+  db.query(insert_task_queury, [task], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -120,7 +120,7 @@ const insert_work_queue_type_of_work = (
     insert_type_of_work_query += "INSERT INTO work_queue_type_of_work ";
     insert_type_of_work_query += "(task_id, task) VALUES ?";
 
-    db().query(insert_type_of_work_query, [arr], (err, rows, fields) => {
+    db.query(insert_type_of_work_query, [arr], (err, rows, fields) => {
       if (err) {
         console.log(err);
         return res.status(500).send(err);
@@ -133,7 +133,7 @@ const insert_work_queue_type_of_work = (
     insert_type_of_work_query += "INSERT INTO work_queue_type_of_work ";
     insert_type_of_work_query += "(task_id, task) VALUES ?";
     const value = [[task_id, otherTypeOfWork]];
-    db().query(insert_type_of_work_query, [value], (err, rows, fields) => {
+    db.query(insert_type_of_work_query, [value], (err, rows, fields) => {
       if (err) {
         console.log(err);
         return res.status(500).send(err);

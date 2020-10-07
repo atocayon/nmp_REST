@@ -13,7 +13,7 @@ const sections_list = (res) => {
   sql += "JOIN divisions b ";
   sql += "ON a.divid = b.depid ";
   sql += "ORDER BY a.section ASC ";
-  db().query(sql, function (err, rows, fields) {
+  db.query(sql, function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -4,7 +4,7 @@ const current_year = date.getFullYear();
 
 const document_trackingNumber = (io) => {
   const sql = "SELECT * FROM documents ORDER BY documentID DESC LIMIT 1";
-  db().query(sql, function (err, rows, fields) {
+  db.query(sql, function (err, rows, fields) {
     if (err) {
       console.log(err);
       throw err;

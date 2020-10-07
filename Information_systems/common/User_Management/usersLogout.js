@@ -3,7 +3,7 @@ const listOfActiveUsers = require("../ListOfActiveUsers/users");
 
 const usersLogout = (userId, res) => {
     const sql = "UPDATE users_session SET isDeleted = ? WHERE userId = ?";
-    db().query(sql, ["1", userId], async (err, result) => {
+    db.query(sql, ["1", userId], async (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).send(err);

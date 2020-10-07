@@ -11,7 +11,7 @@ const web_upload_lists = (user_id, res) => {
   sql += "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time_requested ";
   sql += "FROM web_upload a WHERE a.requisitioner = ?";
 
-  db().query(sql, [user_id], async (err, res_sql, fields) => {
+  db.query(sql, [user_id], async (err, res_sql, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -33,7 +33,7 @@ const web_upload_destination = (res_sql_id, res) => {
   sql += "FROM web_upload_destination a ";
   sql += "WHERE a.web_upload_id = ? ";
 
-  db().query(sql, [res_sql_id], (err, rows, fields) => {
+  db.query(sql, [res_sql_id], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -58,7 +58,7 @@ const web_upload_file = (res_sql_id, res) => {
   sql += "FROM web_upload_file a ";
   sql += "WHERE a.web_upload_id = ? ";
 
-  db().query(sql, [res_sql_id], (err, rows, fields) => {
+  db.query(sql, [res_sql_id], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -84,7 +84,7 @@ const web_upload_logs = (req_sql_id, res) => {
   sql += "FROM web_upload_logs a ";
   sql += "WHERE a.web_upload_id = ? ";
 
-  db().query(sql, [req_sql_id], (err, rows, fields) => {
+  db.query(sql, [req_sql_id], (err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -14,7 +14,7 @@ const user_document_logs = (user_id, res) => {
   sql += "WHERE a.user_id = ? ";
   sql += "AND (a.status = ? OR a.status = ?) ";
   sql += "ORDER BY date_time DESC";
-  db().query(sql, [user_id, "2", "1"], function (err, rows, fields) {
+  db.query(sql, [user_id, "2", "1"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

@@ -5,7 +5,7 @@ const document_route_type = (doc_id, res) => {
   sql +=
     "SELECT a.creator AS creator, a.subject AS subject, a.doc_type AS doc_type, a.note AS note ";
   sql += "FROM documents a WHERE a.ref = ? ";
-  db().query(sql, [docId], function (err, rows, fields) {
+  db.query(sql, [docId], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

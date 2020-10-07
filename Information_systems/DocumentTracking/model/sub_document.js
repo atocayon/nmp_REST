@@ -15,7 +15,7 @@ const sub_document = (document_id, res) => {
   sql += "JOIN document_type c ON a.doc_type = c.id ";
   sql += "WHERE a.ref = ?";
 
-  db().query(sql, [document_id], function (err, rows, fields) {
+  db.query(sql, [document_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

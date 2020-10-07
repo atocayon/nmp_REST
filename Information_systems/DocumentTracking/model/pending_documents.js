@@ -26,7 +26,7 @@ const pending_documents = (user_id, res) => {
   sql += "AND a.notification = ? ";
   sql += "ORDER BY a.date_time DESC ";
 
-  db().query(sql, [user_id, "1", "0"], function (err, rows, fields) {
+  db.query(sql, [user_id, "1", "0"], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

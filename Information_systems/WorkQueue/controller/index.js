@@ -120,15 +120,17 @@ router.get("/admin/job/requests/:user_id", async (req, res) => {
   await model.job_requests(req.params.user_id, res);
 });
 
-// Action Response to job request
-router.post("/admin/job/request/action", async (req, res) => {
-  const { inspector_id, task_id, status, remarks } = req.body;
-  await model.job_request_action(inspector_id, task_id, status, remarks, res);
-});
-
 // List of accepted job request to admin
 router.get("/admin/job/list/:user_id", async (req, res) => {
   await model.admin_job_list(req.params.user_id, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
+// Respone/Update Status Job Request
+router.post("/admin/job/request/action", async (req, res) => {
+  const { inspector_id, task_id, status, remarks } = req.body;
+  await model.job_request_action(inspector_id, task_id, status, remarks, res);
 });
 /* ======================================================== */
 

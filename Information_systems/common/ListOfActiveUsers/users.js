@@ -13,7 +13,7 @@ const fetchUserActiveList = () => {
     sql += "WHERE a.isDeleted = ? ";
     sql += "ORDER BY a.timeStamp ASC";
 
-    db().query(sql, ["0"], function (err, rows, fields) {
+    db.query(sql, ["0"], function (err, rows, fields) {
         if (err) {
             console.log(err);
         }

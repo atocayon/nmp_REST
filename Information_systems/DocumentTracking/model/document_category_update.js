@@ -3,7 +3,7 @@ const db = require("../../../config/Database_config/db");
 const document_category_update = (data, user_id, res) => {
   for (let i = 0; i < data.length; i++) {
     const sql = "UPDATE doc_category SET category = ? WHERE id = ?";
-    db().query(sql, [data[i].category, parseInt(data[i].id)], function (
+    db.query(sql, [data[i].category, parseInt(data[i].id)], function (
       err,
       result
     ) {

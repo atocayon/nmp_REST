@@ -13,7 +13,7 @@ const receive_document = (
 ) => {
   const sql = "SELECT * FROM documentlogs WHERE document_id = ?";
 
-  db().query(sql, [documentTracking], function (err, rows, fields) {
+ db.query(sql, [documentTracking], function (err, rows, fields) {
     if (err) {
       console.log(err);
       return callback("server error");
@@ -49,7 +49,7 @@ const receive_document = (
               dateTime(),
             ],
           ];
-          db().query(insertExternal, [val], function (err, result) {
+         db.query(insertExternal, [val], function (err, result) {
             if (err) {
               console.log(err);
               return callback("server error");
@@ -90,7 +90,7 @@ const receive_document = (
               dateTime(),
             ],
           ];
-          db().query(insertInternal, [val1], function (err, result) {
+         db.query(insertInternal, [val1], function (err, result) {
             if (err) {
               console.log(err);
               return callback("server error");
@@ -98,7 +98,7 @@ const receive_document = (
 
             const selectForwarderAndReceiver =
               "SELECT b.secshort FROM users a JOIN sections b ON a.section = b.secid WHERE a.user_id = ?";
-            db().query(
+           db.query(
               selectForwarderAndReceiver,
               [parseInt(rows[i].user_id)],
               function (err, res_ForwarderAndReceiver, fields) {
@@ -109,7 +109,7 @@ const receive_document = (
 
                 const selectEmailDestination =
                   "SELECT a.email FROM users a JOIN sections b ON a.section = b.secid WHERE b.secshort = ?";
-                db().query(
+               db.query(
                   selectEmailDestination,
                   [res_ForwarderAndReceiver[0].secshort],
                   function (err, res_emailDes, fields) {
@@ -118,7 +118,7 @@ const receive_document = (
                       return callback("server error");
                     }
 
-                    db().query(
+                   db.query(
                       selectForwarderAndReceiver,
                       [parseInt(user_id)],
                       function (err, res_receiver, fields) {
@@ -146,7 +146,7 @@ const receive_document = (
 
                               const update =
                                 "UPDATE documentlogs SET notification =  ? WHERE status = ? AND destination = ? AND document_id = ?";
-                              db().query(
+                             db.query(
                                 update,
                                 ["1", "2", user_section, documentTracking],
                                 function (err, result) {

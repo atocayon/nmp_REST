@@ -27,7 +27,7 @@ const user_list = (res) => {
     sql += "LEFT JOIN users_status e ";
     sql += "ON a.status = e.status_id ";
     sql += "ORDER BY a.user_id ASC ";
-    db().query(sql, function (err, rows, fields) {
+    db.query(sql, function (err, rows, fields) {
         if (err) {
             console.log(err);
             return res.status(500).send(err);

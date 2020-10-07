@@ -15,7 +15,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
   sql += "ON a.user_id = b.user_id ";
   sql += "WHERE email = ? OR username = ?";
 
-  db().query(sql, [usernameOrEmail, usernameOrEmail], function (
+  db.query(sql, [usernameOrEmail, usernameOrEmail], function (
     err,
     rows,
     fields
@@ -46,7 +46,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
         const data = { id, name, role, message: "success" };
         const check_session_query =
           "SELECT * FROM users_session WHERE userId = ?";
-        db().query(check_session_query, [id], function (err, rows, fields) {
+        db.query(check_session_query, [id], function (err, rows, fields) {
           if (err) {
             console.log(err);
             return res.status(500).send(err);
@@ -56,7 +56,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
             const sql1 =
               "INSERT INTO users_session (userId, isDeleted) VALUES ?";
             const values = [[id, 0]];
-            db().query(sql1, [values], function (err, result) {
+            db.query(sql1, [values], function (err, result) {
               if (err) {
                 console.log(err);
                 return res.status(500).send(err);
@@ -70,7 +70,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
           if (rows) {
             const update_session =
               "UPDATE users_session SET isDeleted = ? WHERE userId = ?";
-            db().query(update_session, [0, id], function (err, result) {
+            db.query(update_session, [0, id], function (err, result) {
               if (err) {
                 console.log(err);
                 return res.status(500).send(err);
