@@ -14,6 +14,7 @@ const job_requests = require("./job_requests");
 const job_request_action = require("./job_request_action");
 const admin_job_list = require("./admin_job_list");
 const job_request_logs = require("./job_request_logs");
+const admin_job_request_reports = require("./admin_job_request_reports");
 const workQueueModel = {
   userInfo: userInfo,
   update_user_info: update_user_info,
@@ -33,7 +34,8 @@ const workQueueModel = {
   job_requests: job_requests,
   job_request_action: job_request_action,
   admin_job_list: admin_job_list,
-  job_request_logs: job_request_logs
+  job_request_logs: job_request_logs,
+  admin_job_request_reports: admin_job_request_reports
 };
 
 module.exports = workQueueModel;

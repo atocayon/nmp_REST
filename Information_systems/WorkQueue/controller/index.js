@@ -107,6 +107,7 @@ router.post("/new/job-request", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Client Job request
 router.get("/client/job-requests/:user_id", async (req, res) => {
   await model.client_job_request(req.params.user_id, res);
 });
@@ -115,14 +116,19 @@ router.get("/client/job-requests/:user_id", async (req, res) => {
 /* ======================================================== */
 // Admin side
 
-// List of job requests to admin
+// List of job requests
 router.get("/admin/job/requests/:user_id", async (req, res) => {
   await model.job_requests(req.params.user_id, res);
 });
 
-// List of accepted job request to admin
+// List of accepted job request
 router.get("/admin/job/list/:user_id", async (req, res) => {
   await model.admin_job_list(req.params.user_id, res);
+});
+
+// List of job request report
+router.get("/admin/job/request/reports/:user_id", async (req, res) => {
+  await model.admin_job_request_reports(req.params.user_id, res);
 });
 /* ======================================================== */
 
@@ -137,7 +143,6 @@ router.post("/admin/job/request/action", async (req, res) => {
 /* ======================================================== */
 // Job request logs
 router.get("/job/request/logs/:task_id", async (req, res) => {
-  
   await model.job_request_logs(req.params.task_id, res);
 });
 /* ======================================================== */
