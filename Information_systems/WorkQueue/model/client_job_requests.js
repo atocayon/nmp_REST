@@ -16,7 +16,7 @@ const client_job_request = (user_id, res) => {
   sql += "FROM work_queue_task a ";
   sql += "LEFT JOIN users b ON a.inspector = b.user_id ";
   sql +=
-    "LEFT JOIN (SELECT id,task_id, status FROM work_queue_logs ORDER BY id DESC LIMIT 1) c ON a.id = c.task_id ";
+    "LEFT JOIN work_queue_logs c ON a.id = c.task_id AND c.id = (SELECT MAX(id) FROM work_queue_logs cc WHERE cc.task_id = c.task_id)";
   sql += "WHERE a.requisitioner = ?";
 
   db.query(sql, [parseInt(user_id)], (err, rows, fields) => {
