@@ -130,6 +130,16 @@ router.get("/admin/job/list/:user_id", async (req, res) => {
 router.get("/admin/job/request/reports/:user_id", async (req, res) => {
   await model.admin_job_request_reports(req.params.user_id, res);
 });
+
+// Admin Web Upload list
+router.get("/admin/web/uploads", async (req, res) => {
+  await model.admin_web_upload_list(res);
+});
+
+// Admin Web upload requests
+router.get("/admin/web/upload/requests", async (req, res) => {
+  await model.admin_web_upload_request(res);
+});
 /* ======================================================== */
 
 /* ======================================================== */

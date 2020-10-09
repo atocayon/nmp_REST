@@ -15,6 +15,8 @@ const job_request_action = require("./job_request_action");
 const admin_job_list = require("./admin_job_list");
 const job_request_logs = require("./job_request_logs");
 const admin_job_request_reports = require("./admin_job_request_reports");
+const admin_web_upload_list = require("./admin_web_upload_list");
+const admin_web_upload_request = require("./admin_web_upload_request");
 const workQueueModel = {
   userInfo: userInfo,
   update_user_info: update_user_info,
@@ -24,6 +26,7 @@ const workQueueModel = {
   new_job_request: new_job_request,
   client_job_request: client_job_request,
   web_upload: web_upload,
+  admin_web_upload_list: admin_web_upload_list,
   web_upload_lists: web_upload_requests.web_upload_lists,
   web_upload_destination: web_upload_requests.web_upload_destination,
   web_upload_file: web_upload_requests.web_upload_file,
@@ -35,7 +38,8 @@ const workQueueModel = {
   job_request_action: job_request_action,
   admin_job_list: admin_job_list,
   job_request_logs: job_request_logs,
-  admin_job_request_reports: admin_job_request_reports
+  admin_job_request_reports: admin_job_request_reports,
+  admin_web_upload_request: admin_web_upload_request
 };
 
 module.exports = workQueueModel;
