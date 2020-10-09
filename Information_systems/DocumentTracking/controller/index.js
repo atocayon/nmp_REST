@@ -178,21 +178,13 @@ router.get("/document/destination/:doc_id", async (req, res) => {
 });
 
 //Document Date Time Released
-router.get("/document/sched/:doc_id/:receiver_id", async (req, res) => {
-  await model.document_sched_released(
-    req.params.receiver_id,
-    req.params.doc_id,
-    res
-  );
+router.get("/document/sched/:doc_id", async (req, res) => {
+  await model.document_sched_released(req.params.doc_id, res);
 });
 
 //Document Action taken
-router.get("/document/action/:doc_id/:receiver_id", async (req, res) => {
-  await model.document_action_taken(
-    req.params.receiver_id,
-    req.params.doc_id,
-    res
-  );
+router.get("/document/action/:doc_id", async (req, res) => {
+  await model.document_action_taken(req.params.doc_id, res);
 });
 
 //Document Barcode

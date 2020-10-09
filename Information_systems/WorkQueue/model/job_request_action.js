@@ -19,7 +19,7 @@ const job_request_action = (inspector_id, task_id, status, remarks, res) => {
       [
         inspector_id,
         rows[0].start === null ? dateTime() : rows[0].start,
-        status === "Reject" || status === "Done" ? dateTime() : null,
+        status === "Rejected" || status === "Done" ? dateTime() : null,
         task_id,
       ],
       (err, result) => {

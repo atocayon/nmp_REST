@@ -111,7 +111,7 @@ const new_document = (
               [
                 document_id,
                 document_logs[0][1],
-                document_logs[0][2],
+                "Forwarded",
                 document_logs[0][3],
                 document_logs[0][4],
                 document_logs[0][5],
