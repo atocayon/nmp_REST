@@ -1,11 +1,12 @@
 const db = require("../../../config/Database_config/db");
+const report = require("../../common/Error_Rerports");
 
 const section_documents = (user_id, folder_name, res) => {
   const fetchUser = "SELECT * FROM users WHERE user_id = ?";
   db.query(fetchUser, [parseInt(user_id)], function (err, user_id, fields) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     const fetchCategory =
@@ -17,7 +18,7 @@ const section_documents = (user_id, folder_name, res) => {
     ) {
       if (err) {
         console.log(err);
-        return res.status(500).send(err);
+        return report(err, res);
       }
       let sql = "";
       sql += "SELECT a.documentID as documentID, ";
@@ -44,7 +45,7 @@ const section_documents = (user_id, folder_name, res) => {
       ) {
         if (err) {
           console.log(err);
-          return res.status(500).send(err);
+          return report(err, res);
         }
 
         return res.status(200).send(rows);

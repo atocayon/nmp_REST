@@ -2,6 +2,8 @@ const db = require("../../../config/Database_config/db");
 const assign_trackingNumber = require("./document_trackingNumber");
 const update_document_logs = require("./document_logs");
 const dateTime = require("../../common/Get_CurrentDateTime");
+const report = require("../../common/Error_Rerports");
+
 const new_document = (
   document_id,
   creator,
@@ -18,7 +20,7 @@ const new_document = (
   db.query(check, [parseInt(document_id)], function (err, rows, fields) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     if (rows.length === 0) {
@@ -57,7 +59,7 @@ const new_document = (
         db.query(sql1, [values], function (err, result) {
           if (err) {
             console.log(err);
-            return res.status(500).send(err);
+            return report(err, res);
           }
 
           const sql2 =
@@ -66,6 +68,7 @@ const new_document = (
           db.query(sql2, [action_req], function (err, result) {
             if (err) {
               console.log(err);
+              return report(err, res);
             }
 
             const sql3 =
@@ -74,6 +77,7 @@ const new_document = (
             db.query(sql3, [destination], function (err, result) {
               if (err) {
                 console.log(err);
+                return report(err, res);
               }
 
               update_document_logs(io);
@@ -93,7 +97,7 @@ const new_document = (
         db.query(sql4, [values4], function (err, result) {
           if (err) {
             console.log(err);
-            return res.status(500).send(err);
+            return report(err, res);
           }
 
           const sql5 =
@@ -102,7 +106,7 @@ const new_document = (
           db.query(sql5, [action_req], function (err, result) {
             if (err) {
               console.log(err);
-              return res.status(500).send(err);
+              return report(err, res);
             }
 
             const sql5 =
@@ -122,7 +126,7 @@ const new_document = (
             db.query(sql5, [values5], function (err, result) {
               if (err) {
                 console.log(err);
-                return res.status(500).send(err);
+                return report(err, res);
               }
 
               update_document_logs(io);

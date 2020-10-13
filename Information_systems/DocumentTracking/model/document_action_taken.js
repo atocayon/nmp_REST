@@ -1,4 +1,5 @@
 const db = require("../../../config/Database_config/db");
+const report = require("../../common/Error_Rerports");
 
 const document_action_taken = (doc_id, res) => {
   const sql =
@@ -6,7 +7,7 @@ const document_action_taken = (doc_id, res) => {
   db.query(sql, [doc_id, "2", "4", "1"], function (err, rows, fields) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     console.log(rows);

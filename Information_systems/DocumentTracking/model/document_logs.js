@@ -19,6 +19,7 @@ const document_logs = (io) => {
   db.query(sql, (err, rows, fields) => {
     if (err) {
       console.log(err);
+      
     }
 
     io.emit("doc_logs", rows);

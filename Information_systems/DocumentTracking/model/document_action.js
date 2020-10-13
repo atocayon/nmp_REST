@@ -1,5 +1,7 @@
 const db = require("../../../config/Database_config/db");
 const dateTime = require("../../common/Get_CurrentDateTime");
+const report = require("../../common/Error_Rerports");
+
 const document_action = (
   documentId,
   user_id,
@@ -18,7 +20,7 @@ const document_action = (
   ) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     if (status === "2") {
@@ -40,7 +42,7 @@ const document_action = (
         db.query(insertLogs2, [valInsertLogs2], function (err, result) {
           if (err) {
             console.log(err);
-            return res.status(500).send(err);
+            return report(err, res);
           }
           let updateLogs2 = "";
           updateLogs2 += "UPDATE documentlogs SET ";
@@ -54,7 +56,7 @@ const document_action = (
           ) {
             if (err) {
               console.log(err);
-              return res.status(500).send(err);
+              return report(err, res);
             }
 
             return res.status(200).send(result);
@@ -67,7 +69,7 @@ const document_action = (
           db.query(sql, documentId, function (err, doc, fields) {
             if (err) {
               console.log(err);
-              return res.status(500).send(err);
+              return report(err, res);
             }
             let forwardArr = [];
             let insertLogsVal = [];
@@ -101,19 +103,16 @@ const document_action = (
             db.query(insert, [forwardArr], function (err, result) {
               if (err) {
                 console.log(err);
-                return res.status(500).send(err);
+                return report(err, res);
               }
 
               const insertLogs =
                 "INSERT INTO documentlogs(document_id, user_id, remarks, destinationType, destination, status, notification, date_time) VALUES ?";
 
-              db.query(insertLogs, [insertLogsVal], function (
-                err,
-                result
-              ) {
+              db.query(insertLogs, [insertLogsVal], function (err, result) {
                 if (err) {
                   console.log(err);
-                  return res.status(500).send(err);
+                  return report(err, res);
                 }
                 let updateLogs = "";
                 updateLogs += "UPDATE documentlogs SET ";
@@ -121,18 +120,17 @@ const document_action = (
                 updateLogs += "WHERE document_id = ? ";
                 updateLogs += "AND user_id = ? ";
                 updateLogs += "AND status = ? ";
-                db.query(
-                  updateLogs,
-                  ["1", documentId, user_id, "1"],
-                  function (err, result) {
-                    if (err) {
-                      console.log(err);
-                      return res.status(500).send(err);
-                    }
-
-                    return res.status(200).send(result);
+                db.query(updateLogs, ["1", documentId, user_id, "1"], function (
+                  err,
+                  result
+                ) {
+                  if (err) {
+                    console.log(err);
+                    return report(err, res);
                   }
-                );
+
+                  return res.status(200).send(result);
+                });
               });
             });
           });
@@ -157,7 +155,7 @@ const document_action = (
       db.query(insertLogs3, [values], function (err, result) {
         if (err) {
           console.log(err);
-          return res.status(500).send(err);
+          return report(err, res);
         }
 
         let updateLogs3 = "";
@@ -172,7 +170,7 @@ const document_action = (
         ) {
           if (err) {
             console.log(err);
-            return res.status(500).send(err);
+            return report(err, res);
           }
 
           return res.status(200).send(result);

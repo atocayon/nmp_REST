@@ -1,4 +1,5 @@
 const db = require("../../../config/Database_config/db");
+const report = require("../../common/Error_Rerports");
 
 const document_subject_search = (subj, res) => {
   let sql = "";
@@ -16,7 +17,7 @@ const document_subject_search = (subj, res) => {
   db.query(sql, ["%" + subj + "%"], function (err, rows, fields) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     return res.status(200).send(rows);

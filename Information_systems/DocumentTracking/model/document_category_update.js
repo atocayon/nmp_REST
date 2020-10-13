@@ -1,4 +1,5 @@
 const db = require("../../../config/Database_config/db");
+const report = require("../../common/Error_Rerports");
 
 const document_category_update = (data, user_id, res) => {
   for (let i = 0; i < data.length; i++) {
@@ -8,7 +9,7 @@ const document_category_update = (data, user_id, res) => {
       result
     ) {
       if (err) {
-        return res.status(500).send(err);
+        return report(err, res);
       }
       return res.status(200).send("success");
     });

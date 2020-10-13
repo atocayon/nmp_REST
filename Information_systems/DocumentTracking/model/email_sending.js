@@ -1,5 +1,7 @@
 const db = require("../../../config/Database_config/db");
 const email = require("../../../config/Email_config/email_config");
+const report = require("../../common/Error_Rerports");
+
 const email_sending = (user_id, subject, destination, res) => {
   let selectSender = "";
   selectSender += "SELECT ";
@@ -15,7 +17,7 @@ const email_sending = (user_id, subject, destination, res) => {
   ) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     if (destination.length > 1) {
@@ -34,7 +36,7 @@ const email_sending = (user_id, subject, destination, res) => {
         ) {
           if (err) {
             console.log(err);
-            return res.status(500).send(err);
+            return report(err, res);
           }
 
           if (res_destination.length > 0) {
@@ -56,7 +58,7 @@ const email_sending = (user_id, subject, destination, res) => {
               email().sendMail(mailOptions, function (error, info) {
                 if (error) {
                   console.log(error);
-                  return res.status(500).send(error);
+                  return report(error, res);
                 } else {
                   console.log("Email sent: " + info.response);
                   return res.status(200).send(info.response);
@@ -83,7 +85,7 @@ const email_sending = (user_id, subject, destination, res) => {
       ) {
         if (err) {
           console.log(err);
-          return res.status(500).send(err);
+          return report(err, res);
         }
 
         if (rows.length > 0) {
@@ -100,7 +102,7 @@ const email_sending = (user_id, subject, destination, res) => {
           email().sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
-              return res.status(500).send(error);
+              return report(error, res);
             } else {
               console.log("Email sent: " + info.response);
               return res.status(200).send(info.response);

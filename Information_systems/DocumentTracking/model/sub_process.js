@@ -1,4 +1,5 @@
 const db = require("../../../config/Database_config/db");
+const report = require("../../common/Error_Rerports");
 
 const sub_process = (document_id, res) => {
   let sql = "";
@@ -17,7 +18,7 @@ const sub_process = (document_id, res) => {
   db.query(sql, [document_id], function (err, rows, fields) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     return res.status(200).send(rows);

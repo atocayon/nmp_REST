@@ -1,5 +1,6 @@
 const db = require("../../../config/Database_config/db");
 const dateTime = require("../../common/Get_CurrentDateTime");
+const report = require("../../common/Error_Rerports");
 
 const insert_document_logs = (
   userId,
@@ -23,7 +24,7 @@ const insert_document_logs = (
   db.query(sql1, [values], function (err, result) {
     if (err) {
       console.log(err);
-      res.status(500).send(err);
+      return report(err, res);
     }
 
     res.status(200).send("success");
@@ -59,7 +60,7 @@ const insert_document_destination = (
   db.query(sql, [values], function (err, result) {
     if (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return report(err, res);
     }
 
     if (destination.des.length > 1) {
