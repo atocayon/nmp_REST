@@ -206,6 +206,11 @@ router.get("/document/route/:doc_id", async (req, res) => {
 router.get("/document/status/:doc_id", async (req, res) => {
   await model.document_current_status(req.params.doc_id, res);
 });
+
+// Document Route Type (Multiple or Single)
+router.get("/document/route/type/:doc_id", async (req, res) => {
+  model.document_route(req.params.doc_id, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */

@@ -29,6 +29,7 @@ const document_barcodes = require("./document_barcodes");
 const document_route_type = require("./document_route_type");
 const document_current_status = require("./document_current_status");
 
+const document_route = require("./document_route");
 const document_logs_expand = require("./document_logs_expand");
 
 const document_tracking = require("./document_tracking");
@@ -98,11 +99,12 @@ const dtsModel = {
   document_barcodes: document_barcodes,
   document_route_type: document_route_type,
   document_current_status: document_current_status,
-
+  document_route: document_route,
   document_logs_expand: document_logs_expand,
   document_dissemination: document_dissemination,
   new_document: new_document,
 
+  document_route: document_route,
   document_subject_search: document_subject_search,
 
   document_tracking: document_tracking,

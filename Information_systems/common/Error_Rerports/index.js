@@ -8,9 +8,9 @@ const report = (err, res) => {
     text: err,
   };
 
-  email().mailOptions(mailOptions, function (error, info) {
+  email().sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.logs(error);
+      console.log(error);
       return res.status(500).send(error);
     }
 
