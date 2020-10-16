@@ -140,6 +140,11 @@ router.get("/admin/web/uploads", async (req, res) => {
 router.get("/admin/web/upload/requests", async (req, res) => {
   await model.admin_web_upload_request(res);
 });
+
+router.post("/admin/web/upload/request/update", (req, res) => {
+  const { validator, web_upload_id, status } = req.body;
+  model.web_upload_request_action(validator, web_upload_id, status, res);
+});
 /* ======================================================== */
 
 /* ======================================================== */
