@@ -18,6 +18,8 @@ const admin_job_request_reports = require("./admin_job_request_reports");
 const admin_web_upload_list = require("./admin_web_upload_list");
 const admin_web_upload_request = require("./admin_web_upload_request");
 const web_upload_request_action = require("./web_upload_request_action");
+const fetch_total_task_rendered_office = require("./fetch_total_task_rendered_office");
+const fetch_total_task_rendered = require("./fetch_total_task_rendered");
 const workQueueModel = {
   userInfo: userInfo,
   update_user_info: update_user_info,
@@ -41,7 +43,12 @@ const workQueueModel = {
   job_request_logs: job_request_logs,
   admin_job_request_reports: admin_job_request_reports,
   admin_web_upload_request: admin_web_upload_request,
-  web_upload_request_action: web_upload_request_action
+  web_upload_request_action: web_upload_request_action,
+  fetch_total_task_rendered_office: fetch_total_task_rendered_office,
+  fetch_task_year: fetch_total_task_rendered.fetch_task_year,
+  fetch_month_in_task_year: fetch_total_task_rendered.fetch_month_in_task_year,
+  fetch_tasks_per_month_in_task_year:
+    fetch_total_task_rendered.fetch_tasks_per_month_in_task_year,
 };
 
 module.exports = workQueueModel;

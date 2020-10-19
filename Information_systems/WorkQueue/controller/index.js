@@ -141,10 +141,28 @@ router.get("/admin/web/upload/requests", async (req, res) => {
   await model.admin_web_upload_request(res);
 });
 
-router.post("/admin/web/upload/request/update", (req, res) => {
-  const { validator, web_upload_id, status } = req.body;
-  model.web_upload_request_action(validator, web_upload_id, status, res);
+// Graph Presentation of Job Request reports
+
+// Fetch Total task renderd per office
+router.get("/admin/office/total/task/:inspector", async (req, res) => {
+  model.fetch_total_task_rendered_office(req.params.inspector, res);
 });
+
+// Fetch task year
+router.get("/admin/task/year/:inspector", (req, res) => {
+  model.fetch_task_year(req.params.inspector, res);
+});
+
+// Fetch task month in task year
+router.get("/admin/task/month/:year", (req, res) => {
+  model.fetch_month_in_task_year(req.params.year, res);
+});
+
+// Fetch task per month in task year
+router.get("/admin/task/total/:month", (req, res) => {
+  model.fetch_tasks_per_month_in_task_year(req.params.month, res);
+});
+
 /* ======================================================== */
 
 /* ======================================================== */
@@ -156,6 +174,14 @@ router.post("/admin/job/request/action", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Reponse/Update Status Web upload request
+router.post("/admin/web/upload/request/update", (req, res) => {
+  const { validator, web_upload_id, status } = req.body;
+  model.web_upload_request_action(validator, web_upload_id, status, res);
+});
+/* ======================================================== */
+
+/* ======================================================== */
 // Job request logs
 router.get("/job/request/logs/:task_id", async (req, res) => {
   await model.job_request_logs(req.params.task_id, res);
@@ -163,6 +189,7 @@ router.get("/job/request/logs/:task_id", async (req, res) => {
 /* ======================================================== */
 
 /* ======================================================== */
+// Web Upload
 router.post("/web_upload", (req, res) => {
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
