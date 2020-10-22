@@ -82,7 +82,7 @@ const web_upload_logs = (req_sql_id, res) => {
   sql += "a.status, ";
   sql += "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time ";
   sql += "FROM web_upload_logs a ";
-  sql += "WHERE a.web_upload_id = ? ";
+  sql += "WHERE a.web_upload_id = ? ORDER BY a.id DESC";
 
   db.query(sql, [req_sql_id], (err, rows, fields) => {
     if (err) {

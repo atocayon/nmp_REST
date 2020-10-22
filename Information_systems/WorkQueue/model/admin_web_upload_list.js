@@ -1,6 +1,6 @@
 const db = require("../../../config/Database_config/db");
 
-const admin_web_upload_list = (res) => {
+const admin_web_upload_list = (validator, res) => {
   let sql = "";
   sql += "SELECT ";
   sql += "a.id, ";
@@ -11,8 +11,8 @@ const admin_web_upload_list = (res) => {
     "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time_requested ";
   sql += "FROM web_upload a ";
   sql += "LEFT JOIN users b ON a.requisitioner = b.user_id ";
-  sql += "WHERE a.validator IS NOT NULL ORDER BY a.id DESC";
-  db.query(sql, (err, rows, fields) => {
+  sql += "WHERE a.validator = ? OR a.validator IS NOT NULL ORDER BY a.id DESC";
+  db.query(sql, [validator] ,(err, rows, fields) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);

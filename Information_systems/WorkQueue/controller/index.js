@@ -132,8 +132,8 @@ router.get("/admin/job/request/reports/:user_id", async (req, res) => {
 });
 
 // Admin Web Upload list
-router.get("/admin/web/uploads", async (req, res) => {
-  await model.admin_web_upload_list(res);
+router.get("/admin/web/uploads/:validator", async (req, res) => {
+  await model.admin_web_upload_list(req.params.validator,res);
 });
 
 // Admin Web upload requests
