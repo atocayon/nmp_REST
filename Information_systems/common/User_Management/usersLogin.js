@@ -18,7 +18,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
   db.query(sql, [usernameOrEmail, usernameOrEmail], function (
     err,
     rows,
-    fields
+    fields 
   ) {
     if (err) {
       console.log(err);

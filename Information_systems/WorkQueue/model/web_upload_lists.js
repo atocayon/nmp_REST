@@ -7,9 +7,11 @@ const web_upload_lists = (user_id, res) => {
   sql += "SELECT ";
   sql += "a.id, ";
   sql += "a.upload_title, ";
-  sql += "a.validator, ";
-  sql += "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time_requested ";
-  sql += "FROM web_upload a WHERE a.requisitioner = ? ORDER BY a.id DESC";
+  sql += "b.name AS validator, ";
+  sql +=
+    "DATE_FORMAT(a.date_time,'%M %d, %Y @ %h:%i:%s %p ') AS date_time_requested ";
+  sql +=
+    "FROM web_upload a LEFT JOIN users b ON a.validator = b.user_id WHERE a.requisitioner = ? ORDER BY a.id DESC";
 
   db.query(sql, [user_id], async (err, res_sql, fields) => {
     if (err) {

@@ -7,6 +7,8 @@ const client_job_request = (user_id, res) => {
   sql += "a.id AS task_id, ";
   sql += "DATE_FORMAT(a.start,'%M %d, %Y @ %h:%i:%s %p ') AS task_start, ";
   sql += "DATE_FORMAT(a.end,'%M %d, %Y @ %h:%i:%s %p ') AS task_end, ";
+  sql +="DATE_FORMAT(a.start, '%Y-%m-%d') AS start, ";
+  sql += "DATE_FORMAT(a.end, '%Y-%m-%d') AS end, ";
   sql += "a.scope_of_work, ";
   sql += "DATE_FORMAT(a.deadline,'%M %d, %Y ') AS date_needed, ";
   sql += "DATE_FORMAT(a.date,'%M %d, %Y ') AS date_requested, ";

@@ -1,6 +1,8 @@
 const express = require("express");
 const http = require("http");
 const api = express();
+const router = express.Router();
+
 const http_server = http.createServer(api);
 global.io = require("socket.io")(http_server, { origins: "*:*" });
 // const io = socketIO(http_server);
@@ -30,6 +32,10 @@ const total_pending_doc = require("./Information_systems/DocumentTracking/model/
 const document_logs = require("./Information_systems/DocumentTracking/model/document_logs");
 const receive_document = require("./Information_systems/DocumentTracking/model/receive_document");
 
+const user_login = require("./Information_systems/common/User_Management/usersLogin");
+const user_logout = require("./Information_systems/common/User_Management/usersLogout");
+const allUser = require("./Information_systems/common/ListOfUsers");
+const user = require("./Information_systems/common/Get_UserInfo");
 //User Verification
 api.use("/", tokenVerification); // DTS
 
@@ -38,6 +44,21 @@ api.use("/dts", dts);
 
 //Route Work Queue Information Information_systems
 api.use("/work-queue", work_queue);
+
+// Common endpoint
+api.post("/login", (req, res) => {
+  const { usernameOrEmail, password } = req.body;
+
+  user_login(usernameOrEmail, password, res);
+});
+
+api.get("/fetchUsers", (req, res) => {
+  allUser(res);
+});
+
+api.get("/user/:user_id", (req, res) => {
+  user(req.params.user_id, res);
+});
 
 //Socket.io connections
 io.on("connection", (socket) => {
@@ -67,7 +88,6 @@ io.on("connection", (socket) => {
         callback,
         socket
       );
-
     }
   );
 

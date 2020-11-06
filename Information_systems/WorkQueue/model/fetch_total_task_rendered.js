@@ -37,7 +37,7 @@ const fetch_tasks_per_month_in_task_year = (month, res) => {
   let sql = "SELECT ";
   sql += "a.id ";
   sql += "FROM work_queue_task a ";
-  sql += "WHERE DATE_FORMAT(a.end, '%d') = ? AND a.end IS NOT NULL";
+  sql += "WHERE DATE_FORMAT(a.end, '%b') = ? AND a.end IS NOT NULL";
   db.query(sql, [month], (err, rows, fields) => {
     if (err) {
       console.log(err);

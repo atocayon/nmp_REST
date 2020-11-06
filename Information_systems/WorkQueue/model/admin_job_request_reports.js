@@ -7,8 +7,8 @@ const admin_job_request_reports = (user_id, res) => {
   sql += "a.scope_of_work, ";
   sql += "DATE_FORMAT(a.deadline,'%M %d, %Y ') AS deadline, ";
   sql += "DATE_FORMAT(a.start,'%M %d, %Y @ %h:%i:%s %p ') AS start, ";
-  sql += "DATE_FORMAT(a.start, '%M') AS month_start, ";
-  sql += "DATE_FORMAT(a.start, '%Y') AS year_start, ";
+  sql += "DATE_FORMAT(a.start, '%Y-%m-%d') AS date_start, ";
+  sql += "DATE_FORMAT(a.end, '%Y-%m-%d') AS date_end, ";
   sql += "DATE_FORMAT(a.end,'%M %d, %Y @ %h:%i:%s %p ') AS end, ";
   sql += "DATE_FORMAT(a.date,'%M %d, %Y ') AS dateRequested, ";
   sql += "b.name AS requisitioner, ";
