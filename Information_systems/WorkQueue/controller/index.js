@@ -150,20 +150,20 @@ router.get("/admin/office/total/task/:inspector", async (req, res) => {
 
 // Fetch task year
 router.get("/admin/task/year/:inspector", (req, res) => {
-  console.log("taskyear");
+ 
   model.fetch_task_year(req.params.inspector, res);
 });
 
 // Fetch task month in task year
 router.get("/admin/task/month/:year", (req, res) => {
-  console.log("month");
+
 
   model.fetch_month_in_task_year(req.params.year, res);
 });
 
 // Fetch task per month in task year
 router.get("/admin/task/month/total/:month", (req, res) => {
-  console.log("total");
+ 
   model.fetch_tasks_per_month_in_task_year(req.params.month, res);
 });
 

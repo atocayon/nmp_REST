@@ -12,6 +12,7 @@ const user_info = (user_id, res) => {
     sql += "a.position AS position, ";
     sql += "d.dts_role AS dts_role, ";
     sql += "d.work_queue_role AS work_queue_role, ";
+    sql += "d.control_panel AS control_panel_role, ";
     sql += "a.status AS status, ";
     sql += "b.section AS section, ";
     sql += "b.secshort AS secshort, ";

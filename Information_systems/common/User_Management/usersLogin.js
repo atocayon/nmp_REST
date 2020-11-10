@@ -9,7 +9,8 @@ const usersLogin = (usernameOrEmail, password, res) => {
   sql += "a.name AS name, ";
   sql += "a.password AS password, ";
   sql += "b.dts_role, ";
-  sql += "b.work_queue_role ";
+  sql += "b.work_queue_role, ";
+  sql += "b.control_panel ";
   sql += "FROM users a ";
   sql += "LEFT JOIN users_role b ";
   sql += "ON a.user_id = b.user_id ";
@@ -18,7 +19,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
   db.query(sql, [usernameOrEmail, usernameOrEmail], function (
     err,
     rows,
-    fields 
+    fields
   ) {
     if (err) {
       console.log(err);
@@ -26,7 +27,7 @@ const usersLogin = (usernameOrEmail, password, res) => {
     }
 
     if (rows.length === 0) {
-      return res.status(200).send({message: "unrecognized"});
+      return res.status(200).send({ message: "unrecognized" });
     }
 
     if (rows.length > 0) {
@@ -37,11 +38,15 @@ const usersLogin = (usernameOrEmail, password, res) => {
         }
 
         if (!result) {
-          return res.status(200).send({message: "incorrect"});
+          return res.status(200).send({ message: "incorrect" });
         }
 
         const id = rows[0].user_id;
-        const role = {dts: rows[0].dts_role, work_queue: rows[0].work_queue_role};
+        const role = {
+          dts: rows[0].dts_role,
+          work_queue: rows[0].work_queue_role,
+          control_panel: rows[0].control_panel,
+        };
         const name = rows[0].name;
         const data = { id, name, role, message: "success" };
         const check_session_query =

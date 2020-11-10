@@ -10,7 +10,7 @@ const sections_list = (res) => {
   sql += "b.department AS department, ";
   sql += "b.depshort AS depshort ";
   sql += "FROM sections a ";
-  sql += "JOIN divisions b ";
+  sql += "LEFT JOIN divisions b ";
   sql += "ON a.divid = b.depid ";
   sql += "ORDER BY a.section ASC ";
   db.query(sql, function (err, rows, fields) {

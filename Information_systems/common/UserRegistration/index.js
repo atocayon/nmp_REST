@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 require("dotenv/config");
 const salt = process.env.SALT_ROUNDS;
 const userRegistration = (
-  role,
   employeeId,
   name,
   username,
@@ -12,6 +11,9 @@ const userRegistration = (
   email,
   section,
   position,
+  dts_role,
+  work_queue_role,
+  control_panel,
   res
 ) => {
   email = email.toLowerCase();
@@ -78,15 +80,15 @@ const userRegistration = (
                 }
 
                 let insert_role =
-                  "INSERT INTO users_role (user_id, dts_role) VALUES ?";
-                const role_val = [[rows[0].user_id, role]];
+                  "INSERT INTO users_role (user_id, dts_role, work_queue_role, control_panel) VALUES ?";
+                const role_val = [[rows[0].user_id, dts_role, work_queue_role, control_panel]];
                 db.query(insert_role, [role_val], (err, result) => {
                   if (err) {
                     console.log(err);
                     res.status(500).send(err);
                   }
 
-                  console.log(result);
+                 
                   return res.status(200).send("success");
                 });
               });

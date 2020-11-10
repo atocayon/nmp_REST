@@ -36,6 +36,13 @@ const user_login = require("./Information_systems/common/User_Management/usersLo
 const user_logout = require("./Information_systems/common/User_Management/usersLogout");
 const allUser = require("./Information_systems/common/ListOfUsers");
 const user = require("./Information_systems/common/Get_UserInfo");
+const user_update = require("./Information_systems/common/User_Management/update_user");
+
+const fetch_sections = require("./Information_systems/common/ManageSections/section_list");
+const fetch_divisions = require("./Information_systems/common/ManageDivisions/divisions_list");
+const changePassword = require("./Information_systems/common/ChangePassword");
+const deleteUser = require("./Information_systems/common/User_Management/delete_user_accnt");
+const userRegistration = require("./Information_systems/common/UserRegistration");
 //User Verification
 api.use("/", tokenVerification); // DTS
 
@@ -60,6 +67,59 @@ api.get("/user/:user_id", (req, res) => {
   user(req.params.user_id, res);
 });
 
+api.post("/user/update", (req, res) => {
+  const { data } = req.body;
+  console.log(data);
+  user_update(data, res);
+});
+
+api.get("/fetchSections", (req, res) => {
+  fetch_sections(res);
+});
+
+api.get("/fetchDivisions", (req, res) => {
+  fetch_divisions(res);
+});
+
+api.post("/changePassword", (req, res) => {
+  const { user_id, password } = req.body;
+  changePassword(user_id, password, res);
+});
+
+api.post("/deleteUser", (req, res) => {
+  const { user_id } = req.body;
+  deleteUser(user_id, res);
+});
+
+api.post("/userRegistration", (req, res) => {
+  const {
+    employeeId,
+    name,
+    username,
+    password,
+    contact,
+    email,
+    section,
+    position,
+    dts_role,
+    work_queue_role,
+    control_panel,
+  } = req.body;
+  userRegistration(
+    employeeId,
+    name,
+    username,
+    password,
+    contact,
+    email,
+    section,
+    position,
+    dts_role,
+    work_queue_role,
+    control_panel,
+    res
+  );
+});
 //Socket.io connections
 io.on("connection", (socket) => {
   socket.on("active_users", () => {

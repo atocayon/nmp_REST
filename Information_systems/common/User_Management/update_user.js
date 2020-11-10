@@ -1,4 +1,3 @@
-const { check } = require("prettier");
 const db = require("../../../config/Database_config/db");
 
 const update_user = (data, res) => {
