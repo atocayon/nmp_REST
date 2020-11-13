@@ -36,6 +36,10 @@ const user_login = require("./Information_systems/common/User_Management/usersLo
 const user_logout = require("./Information_systems/common/User_Management/usersLogout");
 const allUser = require("./Information_systems/common/ListOfUsers");
 const user = require("./Information_systems/common/Get_UserInfo");
+const division = require("./Information_systems/common/ManageDivisions/division_info");
+const division_update = require("./Information_systems/common/ManageDivisions/update_division");
+const delete_division = require("./Information_systems/common/ManageDivisions/delete_division");
+const add_division = require("./Information_systems/common/ManageDivisions/new_division");
 const user_update = require("./Information_systems/common/User_Management/update_user");
 
 const fetch_sections = require("./Information_systems/common/ManageSections/section_list");
@@ -120,6 +124,26 @@ api.post("/userRegistration", (req, res) => {
     res
   );
 });
+
+api.get("/division/:divid", (req, res) => {
+  division(req.params.divid, res);
+});
+
+api.post("/division/update", (req, res) => {
+  const { depid, department, depshort } = req.body;
+  division_update(depid, department, depshort, res);
+});
+
+api.post("/division/delete", (req, res) => {
+  const { depid } = req.body;
+  delete_division(depid, res);
+});
+
+api.post("/division/add/new", (req, res) => {
+  const { department, depshort } = req.body;
+  add_division(department, depshort, res);
+});
+
 //Socket.io connections
 io.on("connection", (socket) => {
   socket.on("active_users", () => {

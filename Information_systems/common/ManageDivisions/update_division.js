@@ -1,11 +1,11 @@
 const db = require("../../../config/Database_config/db");
 
-const update_division = (depid, department, depshort, payrollshort, res) => {
+const update_division = (depid, department, depshort, res) => {
   const sql =
-    "UPDATE divisions SET department = ?, depshort = ?, payrollshort = ? WHERE depid = ?";
+    "UPDATE divisions SET department = ?, depshort = ? WHERE depid = ?";
   db.query(
     sql,
-    [department, depshort, payrollshort, parseInt(depid)],
+    [department, depshort, parseInt(depid)],
     function (err, result) {
       if (err) {
         console.log(err);
