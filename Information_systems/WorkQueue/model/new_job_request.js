@@ -1,5 +1,6 @@
 const db = require("../../../config/Database_config/db");
 const get_date = require("../../common/Get_CurrentDate");
+const work_logs = require("../../common/WorkLogs");
 const new_job_request = (
   requisitioner_id,
   task_secid,
@@ -39,7 +40,7 @@ const new_job_request = (
           res
         );
 
-        return res.status(200).send("success");
+        // return res.status(200).send("success");
       } else {
         const increment_task_id = parseInt(result) + 1;
 
@@ -91,7 +92,7 @@ const insert_work_queue_task = (
       scopeOfWork !== "" ? scopeOfWork : null,
       task_secid,
       dateNeeded !== "" ? get_date(dateNeeded) : null,
-      get_date(Date.now())
+      get_date(Date.now()),
     ],
   ];
   db.query(insert_task_queury, [task], (err, rows, fields) => {
@@ -125,7 +126,7 @@ const insert_work_queue_type_of_work = (
         console.log(err);
         return res.status(500).send(err);
       }
-
+      work_logs();
       return res.status(200).send("success");
     });
   } else {
@@ -138,7 +139,7 @@ const insert_work_queue_type_of_work = (
         console.log(err);
         return res.status(500).send(err);
       }
-
+      work_logs();
       return res.status(200).send("success");
     });
   }

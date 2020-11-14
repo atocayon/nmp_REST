@@ -6,7 +6,6 @@ const sections_list = (res) => {
   sql += "a.secid AS secid, ";
   sql += "a.section AS section, ";
   sql += "a.secshort AS secshort, ";
-  sql += "a.active AS active, ";
   sql += "b.department AS department, ";
   sql += "b.depshort AS depshort ";
   sql += "FROM sections a ";

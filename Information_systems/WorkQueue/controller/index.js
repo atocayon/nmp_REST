@@ -20,25 +20,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).any();
 
 /* ======================================================== */
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).send("Work Queue Information System");
 });
-/* ======================================================== */
-
-/* ======================================================== */
-
-// Get user info
-router.get("/user/:user_id", async (req, res) => {
-  await model.userInfo(req.params.user_id, res);
-});
-
-// Update user info
-router.post("/user/update", async (req, res) => {
-  const { data } = req.body;
-
-  await model.update_user_info(data, res);
-});
-
 /* ======================================================== */
 
 /* ======================================================== */
@@ -58,33 +42,11 @@ router.post("/users/code/validate", (req, res) => {
   model.validateCode(users_id, code, res);
 });
 
-// Change password
-router.post("/users/change/password", (req, res) => {
-  const { user_id, new_password } = req.body;
-  model.users_changePassword(user_id, new_password, res);
-});
-/* ======================================================== */
-
-/* ======================================================== */
-//User Login
-router.post("/login", async (req, res) => {
-  const { usernameOrEmail, password } = req.body;
-  await model.user_login(usernameOrEmail, password, res);
-});
-/* ======================================================== */
-
-/* ======================================================== */
-//User Logout
-router.post("/logout", async (req, res) => {
-  const { user_id } = req.body;
-  await model.user_logout(user_id, res);
-});
-
 /* ======================================================== */
 
 /* ======================================================== */
 // Add New Job Request
-router.post("/new/job-request", async (req, res) => {
+router.post("/new/job-request", (req, res) => {
   const {
     requisitioner_id,
     task_secid,
@@ -94,7 +56,7 @@ router.post("/new/job-request", async (req, res) => {
     scopeOfWork,
   } = req.body;
 
-  await model.new_job_request(
+  model.new_job_request(
     requisitioner_id,
     task_secid,
     dateNeeded,
@@ -108,8 +70,8 @@ router.post("/new/job-request", async (req, res) => {
 
 /* ======================================================== */
 // Client Job request
-router.get("/client/job-requests/:user_id", async (req, res) => {
-  await model.client_job_request(req.params.user_id, res);
+router.get("/client/job-requests/:user_id", (req, res) => {
+  model.client_job_request(req.params.user_id, res);
 });
 /* ======================================================== */
 
@@ -117,53 +79,49 @@ router.get("/client/job-requests/:user_id", async (req, res) => {
 // Admin side
 
 // List of job requests
-router.get("/admin/job/requests/:user_id", async (req, res) => {
-  await model.job_requests(req.params.user_id, res);
+router.get("/admin/job/requests/:user_id", (req, res) => {
+  model.job_requests(req.params.user_id, res);
 });
 
 // List of accepted job request
-router.get("/admin/job/list/:user_id", async (req, res) => {
-  await model.admin_job_list(req.params.user_id, res);
+router.get("/admin/job/list/:user_id", (req, res) => {
+  model.admin_job_list(req.params.user_id, res);
 });
 
 // List of job request report
-router.get("/admin/job/request/reports/:user_id", async (req, res) => {
-  await model.admin_job_request_reports(req.params.user_id, res);
+router.get("/admin/job/request/reports/:user_id", (req, res) => {
+  model.admin_job_request_reports(req.params.user_id, res);
 });
 
 // Admin Web Upload list
-router.get("/admin/web/uploads/:validator", async (req, res) => {
-  await model.admin_web_upload_list(req.params.validator,res);
+router.get("/admin/web/uploads/:validator", (req, res) => {
+  model.admin_web_upload_list(req.params.validator, res);
 });
 
 // Admin Web upload requests
-router.get("/admin/web/upload/requests", async (req, res) => {
-  await model.admin_web_upload_request(res);
+router.get("/admin/web/upload/requests", (req, res) => {
+  model.admin_web_upload_request(res);
 });
 
 // Graph Presentation of Job Request reports
 
 // Fetch Total task renderd per office
-router.get("/admin/office/total/task/:inspector", async (req, res) => {
+router.get("/admin/office/total/task/:inspector", (req, res) => {
   model.fetch_total_task_rendered_office(req.params.inspector, res);
 });
 
 // Fetch task year
 router.get("/admin/task/year/:inspector", (req, res) => {
- 
   model.fetch_task_year(req.params.inspector, res);
 });
 
 // Fetch task month in task year
 router.get("/admin/task/month/:year", (req, res) => {
-
-
   model.fetch_month_in_task_year(req.params.year, res);
 });
 
 // Fetch task per month in task year
 router.get("/admin/task/month/total/:month", (req, res) => {
- 
   model.fetch_tasks_per_month_in_task_year(req.params.month, res);
 });
 
@@ -171,9 +129,15 @@ router.get("/admin/task/month/total/:month", (req, res) => {
 
 /* ======================================================== */
 // Respone/Update Status Job Request
-router.post("/admin/job/request/action", async (req, res) => {
+router.post("/admin/job/request/action", (req, res) => {
   const { inspector_id, task_id, status, remarks } = req.body;
-  await model.job_request_action(inspector_id, task_id, status, remarks, res);
+  model.job_request_action(inspector_id, task_id, status, remarks, res);
+});
+
+// client job confirmation
+router.post("/admin/job/request/confirmation", (req, res) => {
+  const { task_id, status, remarks } = req.body;
+  model.job_request_confirmation(task_id, status, remarks, res);
 });
 /* ======================================================== */
 
@@ -187,8 +151,8 @@ router.post("/admin/web/upload/request/update", (req, res) => {
 
 /* ======================================================== */
 // Job request logs
-router.get("/job/request/logs/:task_id", async (req, res) => {
-  await model.job_request_logs(req.params.task_id, res);
+router.get("/job/request/logs/:task_id", (req, res) => {
+  model.job_request_logs(req.params.task_id, res);
 });
 /* ======================================================== */
 
@@ -238,8 +202,8 @@ router.get("/web_upload_logs/:web_upload_id", (req, res) => {
 
 /* ======================================================== */
 // Section List
-router.get("/sections", async (req, res) => {
-  await model.sectionList(res);
+router.get("/sections", (req, res) => {
+  model.sectionList(res);
 });
 /* ======================================================== */
 

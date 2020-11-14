@@ -1,9 +1,8 @@
 const db = require("../../../config/Database_config/db");
 
 const new_section = (division, section, secshort, res) => {
-  const sql =
-    "INSERT INTO sections (divid, section, secshort, active) VALUES ?";
-  const values = [[division, section, secshort, 1]];
+  const sql = "INSERT INTO sections (divid, section, secshort) VALUES ?";
+  const values = [[division, section, secshort]];
   db.query(sql, [values], function (err, result) {
     if (err) {
       console.log(err);

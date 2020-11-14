@@ -26,27 +26,45 @@ const dts = require("./Information_systems/DocumentTracking/controller");
 const work_queue = require("./Information_systems/WorkQueue/controller");
 
 //Socket.io callbacks for Document Tracking System
-const userList = require("./Information_systems/common/ListOfActiveUsers/users");
 const document_trackingNumber = require("./Information_systems/DocumentTracking/model/document_trackingNumber");
 const total_pending_doc = require("./Information_systems/DocumentTracking/model/total_pending_documents");
-const document_logs = require("./Information_systems/DocumentTracking/model/document_logs");
+const documents = require("./Information_systems/common/DocumentLogs");
+const work = require("./Information_systems/common/WorkLogs");
 const receive_document = require("./Information_systems/DocumentTracking/model/receive_document");
 
 const user_login = require("./Information_systems/common/User_Management/usersLogin");
 const user_logout = require("./Information_systems/common/User_Management/usersLogout");
-const allUser = require("./Information_systems/common/ListOfUsers");
-const user = require("./Information_systems/common/Get_UserInfo");
+
 const division = require("./Information_systems/common/ManageDivisions/division_info");
 const division_update = require("./Information_systems/common/ManageDivisions/update_division");
 const delete_division = require("./Information_systems/common/ManageDivisions/delete_division");
 const add_division = require("./Information_systems/common/ManageDivisions/new_division");
+
+const section = require("./Information_systems/common/ManageSections/section_info");
+const section_update = require("./Information_systems/common/ManageSections/update_section");
+const delete_section = require("./Information_systems/common/ManageSections/delete_section");
+const add_section = require("./Information_systems/common/ManageSections/new_section");
+
+const user = require("./Information_systems/common/Get_UserInfo");
+const userRegistration = require("./Information_systems/common/UserRegistration");
 const user_update = require("./Information_systems/common/User_Management/update_user");
+const deleteUser = require("./Information_systems/common/User_Management/delete_user_accnt");
 
 const fetch_sections = require("./Information_systems/common/ManageSections/section_list");
 const fetch_divisions = require("./Information_systems/common/ManageDivisions/divisions_list");
+const fetch_users = require("./Information_systems/common/ListOfUsers");
+const fetch_active_users = require("./Information_systems/common/ListOfActiveUsers/users");
+const fetch_document_types = require("./Information_systems/common/ManageDocumentTypes/document_types");
+
 const changePassword = require("./Information_systems/common/ChangePassword");
-const deleteUser = require("./Information_systems/common/User_Management/delete_user_accnt");
-const userRegistration = require("./Information_systems/common/UserRegistration");
+
+const document_type = require("./Information_systems/common/ManageDocumentTypes/document_type_info");
+const add_documentType = require("./Information_systems/common/ManageDocumentTypes/new_document_type");
+const document_type_update = require("./Information_systems/common/ManageDocumentTypes/update_document_type");
+const delete_document_type = require("./Information_systems/common/ManageDocumentTypes/delete_document_type");
+
+const doc_logs = require("./Information_systems/common/DocumentLogs/logs");
+
 //User Verification
 api.use("/", tokenVerification); // DTS
 
@@ -63,8 +81,13 @@ api.post("/login", (req, res) => {
   user_login(usernameOrEmail, password, res);
 });
 
+api.post("/logout", (req, res) => {
+  const { user_id } = req.body;
+  user_logout(user_id, res);
+});
+
 api.get("/fetchUsers", (req, res) => {
-  allUser(res);
+  fetch_users(res);
 });
 
 api.get("/user/:user_id", (req, res) => {
@@ -144,10 +167,56 @@ api.post("/division/add/new", (req, res) => {
   add_division(department, depshort, res);
 });
 
+api.get("/section/:secid", (req, res) => {
+  section(req.params.secid, res);
+});
+
+api.post("/section/update", (req, res) => {
+  const { secid, divid, section, secshort } = req.body;
+  section_update(secid, divid, section, secshort, res);
+});
+
+api.post("/section/delete", (req, res) => {
+  const { secid } = req.body;
+  delete_section(secid, res);
+});
+
+api.post("/section/add/new", (req, res) => {
+  const { divid, section, secshort } = req.body;
+  add_section(divid, section, secshort, res);
+});
+
+api.get("/document_types", (req, res) => {
+  fetch_document_types(res);
+});
+
+api.get("/document_type/:doc_type_id", (req, res) => {
+  document_type(req.params.doc_type_id, res);
+});
+
+api.post("/document_type/update", (req, res) => {
+  const { id, type } = req.body;
+  document_type_update(id, type, res);
+});
+
+api.post("/document_type/delete", (req, res) => {
+  const { id } = req.body;
+  delete_document_type(id, res);
+});
+
+api.post("/document_type/add/new", (req, res) => {
+  const { type } = req.body;
+  add_documentType(type, res);
+});
+
+api.get("/document/logs/:doc_id", (req, res) => {
+  doc_logs(req.params.doc_id, res);
+});
+
 //Socket.io connections
 io.on("connection", (socket) => {
   socket.on("active_users", () => {
-    userList(io);
+    fetch_active_users(io);
   });
 
   socket.on("document_trackingNumber", () => {
@@ -159,7 +228,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("document_logs", () => {
-    document_logs(io);
+    documents();
+  });
+
+  socket.on("work_queue_logs", () => {
+    work();
   });
 
   socket.on(

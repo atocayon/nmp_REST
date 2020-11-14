@@ -10,32 +10,32 @@ router.get("/", (req, res) => {
 
 /* ======================================================== */
 //Users List
-router.get("/users", async (req, res) => {
-  await model.usersList(res);
+router.get("/users", (req, res) => {
+  model.usersList(res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Users Login
-router.post("/login", async (req, res) => {
+router.post("/login", (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
-  await model.usersLogin(usernameOrEmail, password, res);
+  model.usersLogin(usernameOrEmail, password, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Users Logout
-router.post("/logout", async (req, res) => {
+router.post("/logout", (req, res) => {
   const { userId } = req.body;
 
-  await model.usersLogout(userId, res);
+  model.usersLogout(userId, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //User Registration
-router.post("/registration", async (req, res) => {
+router.post("/registration", (req, res) => {
   const {
     role,
     employeeId,
@@ -48,7 +48,7 @@ router.post("/registration", async (req, res) => {
     position,
   } = req.body;
 
-  await model.userRegistration(
+  model.userRegistration(
     role,
     employeeId,
     name,
@@ -63,55 +63,55 @@ router.post("/registration", async (req, res) => {
 });
 
 //Update User
-router.post("/user/update", async (req, res) => {
+router.post("/user/update", (req, res) => {
   const { data } = req.body;
 
-  await model.update_user(data, res);
+  model.update_user(data, res);
 });
 
 //Update user role
-router.post("/user/update/role", async (req, res) => {
+router.post("/user/update/role", (req, res) => {
   const { role, user_id, sec_id } = req.body;
-  await model.update_user_role(role, user_id, sec_id, res);
+  model.update_user_role(role, user_id, sec_id, res);
 });
 
 //Update user status
-router.post("/user/update/status", async (req, res) => {
+router.post("/user/update/status", (req, res) => {
   const { status, user_id, sec_id } = req.body;
-  await model.update_user_status(status, user_id, sec_id, res);
+  model.update_user_status(status, user_id, sec_id, res);
 });
 
 //User transfer office
-router.post("/user/transfer/office", async (req, res) => {
+router.post("/user/transfer/office", (req, res) => {
   const { sec_id, user_id } = req.body;
-  await model.user_transfer_office(sec_id, user_id, res);
+  model.user_transfer_office(sec_id, user_id, res);
 });
 
 //User account deletion
-router.post("/user/delete", async (req, res) => {
+router.post("/user/delete", (req, res) => {
   const { user_id } = req.body;
-  await model.deleted_user_accnt(user_id, res);
+  model.deleted_user_accnt(user_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Current System Users
-router.get("/user/:userId", async (req, res) => {
-  await model.userInfo(req.params.userId, res);
+router.get("/user/:userId", (req, res) => {
+  model.userInfo(req.params.userId, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Section Users
-router.get("/users/section/:sec_id", async (req, res) => {
+router.get("/users/section/:sec_id", (req, res) => {
   console.log(req.params.sec_id);
-  await model.section_users(req.params.sec_id, res);
+  model.section_users(req.params.sec_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //After Receiving Document
-router.post("/document/action", async (req, res) => {
+router.post("/document/action", (req, res) => {
   const {
     documentId,
     user_id,
@@ -136,24 +136,24 @@ router.post("/document/action", async (req, res) => {
 /* ======================================================== */
 // Manage Document Category
 // Fetch User Document Category
-router.get("/user/document/category/:user_id", async (req, res) => {
-  await model.doc_category(req.params.user_id, res);
+router.get("/user/document/category/:user_id", (req, res) => {
+  model.doc_category(req.params.user_id, res);
 });
 
 // Add New Document Category
-router.post("/user/document/category/new", async (req, res) => {
+router.post("/user/document/category/new", (req, res) => {
   const { user_id, category } = req.body;
   model.doc_category_new(user_id, category, res);
 });
 
 // Update Document Category
-router.post("/user/document/category/update", async (req, res) => {
+router.post("/user/document/category/update", (req, res) => {
   const { data, user_id } = req.body;
   model.doc_category_update(data, user_id, res);
 });
 
 // Delete Document Category
-router.post("/user/document/category/delete", async (req, res) => {
+router.post("/user/document/category/delete", (req, res) => {
   console.log("andakjfdaksjdf");
   const { doc_category_id } = req.body;
 
@@ -163,133 +163,94 @@ router.post("/user/document/category/delete", async (req, res) => {
 
 /* ======================================================== */
 //Document Information
-router.get("/document/:doc_id", async (req, res) => {
-  await model.document_info(req.params.doc_id, res);
+router.get("/document/:doc_id", (req, res) => {
+  model.document_info(req.params.doc_id, res);
 });
 
 //Document Action Required
-router.get("/document/required/:doc_id", async (req, res) => {
-  await model.document_action_req(req.params.doc_id, res);
+router.get("/document/required/:doc_id", (req, res) => {
+  model.document_action_req(req.params.doc_id, res);
 });
 
 //Document Destination
-router.get("/document/destination/:doc_id", async (req, res) => {
-  await model.document_destination(req.params.doc_id, res);
+router.get("/document/destination/:doc_id", (req, res) => {
+  model.document_destination(req.params.doc_id, res);
 });
 
 //Document Date Time Released
-router.get("/document/sched/:doc_id", async (req, res) => {
-  await model.document_sched_released(req.params.doc_id, res);
+router.get("/document/sched/:doc_id", (req, res) => {
+  model.document_sched_released(req.params.doc_id, res);
 });
 
 //Document Action taken
-router.get("/document/action/:doc_id", async (req, res) => {
-  await model.document_action_taken(req.params.doc_id, res);
+router.get("/document/action/:doc_id", (req, res) => {
+  model.document_action_taken(req.params.doc_id, res);
 });
 
 //Document Barcode
-router.get("/document/barcode/:doc_id", async (req, res) => {
-  await model.document_barcode(req.params.doc_id, res);
+router.get("/document/barcode/:doc_id", (req, res) => {
+  model.document_barcode(req.params.doc_id, res);
 });
 
 //Document Barcodes
-router.get("/document/barcodes/:doc_id", async (req, res) => {
-  await model.document_barcodes(req.params.doc_id, res);
+router.get("/document/barcodes/:doc_id", (req, res) => {
+  model.document_barcodes(req.params.doc_id, res);
 });
 
 //Document Route Type
-router.get("/document/route/:doc_id", async (req, res) => {
-  await model.document_route_type(req.params.doc_id, res);
+router.get("/document/route/:doc_id", (req, res) => {
+  model.document_route_type(req.params.doc_id, res);
 });
 
 //Document Current Status
-router.get("/document/status/:doc_id", async (req, res) => {
-  await model.document_current_status(req.params.doc_id, res);
+router.get("/document/status/:doc_id", (req, res) => {
+  model.document_current_status(req.params.doc_id, res);
 });
 
 // Document Route Type (Multiple or Single)
-router.get("/document/route/type/:doc_id", async (req, res) => {
+router.get("/document/route/type/:doc_id", (req, res) => {
   model.document_route(req.params.doc_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
-// Expand Doc Logs
-router.get("/document/expand/:doc_id/:status", async (req, res) => {
-  await model.document_logs_expand(req.params.doc_id, req.params.status, res);
-});
-/* ======================================================== */
-
-/* ======================================================== */
-//Document Types
-router.get("/document/list/types", async (req, res) => {
-  await model.document_types(res);
-});
-
-//Document Type info
-router.get("/document/type/:doc_type_id", async (req, res) => {
-  await model.document_type_info(req.params.doc_type_id, res);
-});
-
-// New Document Type
-router.post("/document/type/new", async (req, res) => {
-  const { doc_type } = req.body;
-  await model.new_document_type(doc_type, res);
-});
-
-//Update Document Type
-router.post("/document/type/update", async (req, res) => {
-  const { doc_type_id, doc_type } = req.body;
-
-  await model.update_document_type(doc_type_id, doc_type, res);
-});
-
-//Delete Document Type
-router.post("/document/type/delete", async (req, res) => {
-  const { doc_type_id } = req.body;
-
-  await model.delete_document_type(doc_type_id, res);
-});
-/* ======================================================== */
-
-/* ======================================================== */
 // user Pending document
-router.get("/document/pendings/:user_id", async (req, res) => {
-  await model.pending_documents(req.params.user_id, res);
+router.get("/document/pendings/:user_id", (req, res) => {
+  model.pending_documents(req.params.user_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 // User document logs
-router.get("/document/logs/:user_id", async (req, res) => {
-  await model.user_document_logs(req.params.user_id, res);
+router.get("/document/logs/:user_id", (req, res) => {
+  model.user_document_logs(req.params.user_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 // Section Documents
-router.get("/document/section/:folder/:user_id", async (req, res) => {
-  await model.section_documents(req.params.user_id, req.params.folder, res);
+router.get("/document/section/:folder/:user_id", (req, res) => {
+  model.section_documents(req.params.user_id, req.params.folder, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Sub Document
-router.get("/document/sub/:doc_id", async (req, res) => {
-  await model.sub_document(req.params.doc_id, res);
+router.get("/document/sub/:doc_id", (req, res) => {
+  model.sub_document(req.params.doc_id, res);
 });
 
 //Sub Process
-router.get("/document/process/:doc_id", async (req, res) => {
-  await model.sub_process(req.params.doc_id, res);
+router.get("/document/process/:doc_id", (req, res) => {
+  model.sub_process(req.params.doc_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Document Dissemination
-router.post("/document/dissemination", async (req, res) => {
+router.post("/document/dissemination", (req, res) => {
   const { user_id, doc_id, doc_info, remarks, destination } = req.body;
-  await model.document_dissemination(
+  model.document_dissemination(
     user_id,
     doc_id,
     doc_info,
@@ -302,7 +263,7 @@ router.post("/document/dissemination", async (req, res) => {
 
 /* ======================================================== */
 //New Document
-router.post("/document/new", async (req, res) => {
+router.post("/document/new", (req, res) => {
   const {
     document_id,
     creator,
@@ -314,7 +275,7 @@ router.post("/document/new", async (req, res) => {
     category,
   } = req.body;
 
-  await model.new_document(
+  model.new_document(
     document_id,
     creator,
     subject,
@@ -331,46 +292,46 @@ router.post("/document/new", async (req, res) => {
 
 /* ======================================================== */
 //Document Search
-router.get("/document/search/:subject", async (req, res) => {
-  await model.document_subject_search(req.params.subject, res);
+router.get("/document/search/:subject", (req, res) => {
+  model.document_subject_search(req.params.subject, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 //Document Tracking
-router.get("/document/tracking/:doc_id", async (req, res) => {
-  await model.document_tracking(req.params.doc_id, res);
+router.get("/document/tracking/:doc_id", (req, res) => {
+  model.document_tracking(req.params.doc_id, res);
 });
 /* ======================================================== */
 
 /* ======================================================== */
 // Manage NMP Divisions
 // Divisions list
-router.get("/divisions", async (req, res) => {
-  await model.division_list(res);
+router.get("/divisions", (req, res) => {
+  model.division_list(res);
 });
 
 //Division Info
-router.get("/division/:divId", async (req, res) => {
-  await model.division_info(req.params.divId, res);
+router.get("/division/:divId", (req, res) => {
+  model.division_info(req.params.divId, res);
 });
 
 //New Division
-router.post("/division/new", async (req, res) => {
+router.post("/division/new", (req, res) => {
   const { department, depshort, payroll } = req.body;
-  await model.new_division(department, depshort, payroll, res);
+  model.new_division(department, depshort, payroll, res);
 });
 
 //Update Division
-router.post("/division/update", async (req, res) => {
+router.post("/division/update", (req, res) => {
   const { depid, department, depshort, payrollshort } = req.body;
-  await model.update_division(depid, department, depshort, payrollshort, res);
+  model.update_division(depid, department, depshort, payrollshort, res);
 });
 
 //Delete Division
-router.post("/division/delete", async (req, res) => {
+router.post("/division/delete", (req, res) => {
   const { div_id } = req.body;
-  await model.delete_division(div_id, res);
+  model.delete_division(div_id, res);
 });
 //End Manage NMP Divisions
 /* ======================================================== */
@@ -378,40 +339,40 @@ router.post("/division/delete", async (req, res) => {
 /* ======================================================== */
 //Manage NMP Sections
 //Section List
-router.get("/sections", async (req, res) => {
-  await model.section_list(res);
+router.get("/sections", (req, res) => {
+  model.section_list(res);
 });
 
 //Section info
-router.get("/section/:sec_id", async (req, res) => {
-  await model.section_info(req.params.sec_id, res);
+router.get("/section/:sec_id", (req, res) => {
+  model.section_info(req.params.sec_id, res);
 });
 
 //Add new section
-router.post("/section/new", async (req, res) => {
+router.post("/section/new", (req, res) => {
   const { division, section, secshort } = req.body;
-  await model.new_section(division, section, secshort, res);
+  model.new_section(division, section, secshort, res);
 });
 
 //Update section
-router.post("/section/update", async (req, res) => {
+router.post("/section/update", (req, res) => {
   const { sec_id, div_id, section, secshort } = req.body;
-  await model.update_section(sec_id, div_id, section, secshort, res);
+  model.update_section(sec_id, div_id, section, secshort, res);
 });
 
 //Delete section
-router.post("/sections/delete", async (req, res) => {
+router.post("/sections/delete", (req, res) => {
   const { sec_id } = req.body;
-  await model.delete_section(sec_id, res);
+  model.delete_section(sec_id, res);
 });
 //End Manage NMP Sections
 /* ======================================================== */
 
 /* ======================================================== */
 //Email Sending
-router.post("/send/email", async (req, res) => {
+router.post("/send/email", (req, res) => {
   const { user_id, subject, destination } = req.body;
-  await model.email_sending(user_id, subject, destination, res);
+  model.email_sending(user_id, subject, destination, res);
 });
 /* ======================================================== */
 

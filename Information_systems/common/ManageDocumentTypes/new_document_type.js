@@ -1,9 +1,9 @@
 const db = require("../../../config/Database_config/db");
-const report = require("../../common/Error_Rerports");
+const report = require("../Error_Rerports");
 
 const new_document_type = (doc_type, res) => {
   const sql = "INSERT INTO document_type (type) VALUES ?";
-  const values = [[type]];
+  const values = [[doc_type]];
   db.query(sql, [values], function (err, result) {
     if (err) {
       console.log(err);

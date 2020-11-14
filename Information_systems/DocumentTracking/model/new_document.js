@@ -1,6 +1,6 @@
 const db = require("../../../config/Database_config/db");
 const assign_trackingNumber = require("./document_trackingNumber");
-const update_document_logs = require("./document_logs");
+const update_document_logs = require("../../common/DocumentLogs");
 const dateTime = require("../../common/Get_CurrentDateTime");
 const report = require("../../common/Error_Rerports");
 
@@ -80,8 +80,8 @@ const new_document = (
                 return report(err, res);
               }
 
-              update_document_logs(io);
-              assign_trackingNumber(io);
+              update_document_logs();
+              assign_trackingNumber();
 
               return res.status(200).send("success");
             });
@@ -129,8 +129,8 @@ const new_document = (
                 return report(err, res);
               }
 
-              update_document_logs(io);
-              assign_trackingNumber(io);
+              update_document_logs();
+              assign_trackingNumber();
 
               return res.status(200).send("success");
             });

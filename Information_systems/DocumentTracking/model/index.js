@@ -30,18 +30,11 @@ const document_route_type = require("./document_route_type");
 const document_current_status = require("./document_current_status");
 
 const document_route = require("./document_route");
-const document_logs_expand = require("./document_logs_expand");
 
 const document_tracking = require("./document_tracking");
 
 const sub_document = require("./sub_document");
 const sub_process = require("./sub_process");
-
-const document_types = require("./document_types");
-const document_type_info = require("./document_type_info");
-const new_document_type = require("./new_document_type");
-const update_document_type = require("./update_document_type");
-const delete_document_type = require("./delete_document_type");
 
 const pending_documents = require("./pending_documents");
 
@@ -66,7 +59,6 @@ const document_dissemination = require("./document_dissemination");
 
 const document_subject_search = require("./document_subject_search");
 const email_sending = require("./email_sending");
-const { request } = require("express");
 
 const dtsModel = {
   usersList: usersList,
@@ -100,7 +92,6 @@ const dtsModel = {
   document_route_type: document_route_type,
   document_current_status: document_current_status,
   document_route: document_route,
-  document_logs_expand: document_logs_expand,
   document_dissemination: document_dissemination,
   new_document: new_document,
 
@@ -111,12 +102,6 @@ const dtsModel = {
 
   sub_document: sub_document,
   sub_process: sub_process,
-
-  document_types: document_types,
-  document_type_info: document_type_info,
-  new_document_type: new_document_type,
-  update_document_type: update_document_type,
-  delete_document_type: delete_document_type,
 
   pending_documents: pending_documents,
 
