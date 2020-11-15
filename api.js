@@ -96,7 +96,7 @@ api.get("/user/:user_id", (req, res) => {
 
 api.post("/user/update", (req, res) => {
   const { data } = req.body;
-  console.log(data);
+  // console.log(data);
   user_update(data, res);
 });
 

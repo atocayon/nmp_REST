@@ -139,6 +139,74 @@ router.post("/admin/job/request/confirmation", (req, res) => {
   const { task_id, status, remarks } = req.body;
   model.job_request_confirmation(task_id, status, remarks, res);
 });
+
+// Client Job Request Done
+router.post("/admin/job/request/done/action", (req, res) => {
+  const {
+    task_id,
+    item_no,
+    serial_no,
+    brand,
+    memory_capacity,
+    item_model,
+    color,
+    measurement,
+    location,
+    system_interface,
+    func_capabilities,
+    data_structure,
+    reliability,
+    security,
+    quality,
+    contraints,
+    findings,
+    recommendations,
+    specific_job,
+  } = req.body;
+  console.log({
+    task_id,
+    item_no,
+    serial_no,
+    brand,
+    memory_capacity,
+    item_model,
+    color,
+    measurement,
+    location,
+    system_interface,
+    func_capabilities,
+    data_structure,
+    reliability,
+    security,
+    quality,
+    contraints,
+    findings,
+    recommendations,
+    specific_job,
+  });
+  model.done_job_action(
+    task_id,
+    item_no,
+    serial_no,
+    brand,
+    memory_capacity,
+    item_model,
+    color,
+    measurement,
+    location,
+    system_interface,
+    func_capabilities,
+    data_structure,
+    reliability,
+    security,
+    quality,
+    contraints,
+    findings,
+    recommendations,
+    specific_job,
+    res
+  );
+});
 /* ======================================================== */
 
 /* ======================================================== */

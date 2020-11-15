@@ -21,7 +21,9 @@ const web_upload_request_action = require("./web_upload_request_action");
 const fetch_total_task_rendered_office = require("./fetch_total_task_rendered_office");
 const fetch_total_task_rendered = require("./fetch_total_task_rendered");
 const job_request_confirmation = require("./job_request_confirmation");
+const done_job_action = require("./done_job_action");
 const workQueueModel = {
+  done_job_action,
   userInfo,
   update_user_info,
   user_login,
